@@ -2,7 +2,7 @@ input{
    width: 270px;
    height: 40px;
    border-radius: 15px;
-   border: 1px solid rgb(63, 63, 63);
+   border: 1px solid rgb(161, 161, 161);
    outline: none;
    padding-left: 38px;  
 }
@@ -12,14 +12,20 @@ input{
    width: 250px;
 }
  
-.input-container img {
+/* .input-container img {
    position: absolute;
-   left: 30px; /* Posição do ícone */
+   left: 30px; 
    top: 70%;
    transform: translateY(-50%);
    max-width: 20px;
    max-height: 20px;
-}
+} */
+ .icon{
+   max-width: 20px;
+   max-height: 20px;
+   position: absolute;
+ }
+
 
 input::placeholder{
    font-family: "Poppins", sans-serif;

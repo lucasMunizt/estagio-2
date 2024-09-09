@@ -1,38 +1,33 @@
 import React from 'react'
-import Input from './input/Input'
-import './Login.css'
-import imgLogin from '../assets/imgLogin.png'
+import Logins from './Logins'
 import iconEmail from '../assets/icons/iconEmail.png'
 import iconSenha from '../assets/icons/iconSenha.png'
-import Butao from './Butao/Butao'
+import './Login.css'
+
 const Login = () => {
   return (
-    <div>
-        <div className="container">
-            <div className="quadrado-principal">
-              <div className="img">
-                <h1>NutriCard</h1>
-                 {/* <img src={imgLogin} alt="" /> */}
-                 <Butao id="criar-conta" valor="Criar conta"/>
-              </div>
-                <div className="card">
-                    <div className="card-body">
-                     <h1>Olá Novamente</h1>
-                     <span>Seja Bem Vindo</span>   
-                      <form action="">
-                        <Input id='email' icon={iconEmail} placeholder="Coloque seu Email" type="email"/>
-                        <Input id='senha' icon={iconSenha} placeholder="Coloque sua Senha" type="password"/>
-                        <Butao valor="Entrar" id="butao-entrar"/>
-                         <div className="senha-esquecida">
-                          <p><a href="#">esqueceu a senha</a></p>
-                          </div> 
-                       </form>  
-                    </div>
-                </div>
-            </div>
-        </div>
-      
-    </div>
+    <Logins
+      titulo="NutriCard"
+      butaoId1="criar-conta"
+      butaoValor1="Criar conta"
+      titulo2="Olá Novamente"
+      span="Seja Bem Vindo"
+      inputId1="email"
+      iconEmail={iconEmail}
+      placeholder1="Coloque seu Email"
+      typer1="email"
+      inputId2="senha"
+      iconSenha={iconSenha}
+      placeholder2="Coloque sua Senha"
+      type2="password"
+      butaoValor2="Entrar"
+      butaoId2="butao-entrar"
+      a="Esqueceu a senha?"
+      isCadastro={false}  
+      layoutInvertido={false} 
+      idImgEmail='iconEmailLogin'  
+      idImgSenha='iconSenhaLogin'  
+    />
   )
 }
 

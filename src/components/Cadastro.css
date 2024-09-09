@@ -1,0 +1,53 @@
+#nome {
+    margin-top: 2px;
+    margin-left: 20px;
+}
+
+#email {
+    margin-bottom: 20px;
+}
+
+#confirm-senha {
+    margin-left: 20px;
+}
+
+#butao-cadastrar {
+    margin-left: 20px;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.card-body {
+    width: 350px;
+    background-color: #fff;
+    height: 450px;
+    border-radius: 15px;
+}
+
+#iconCadastroPersona {        /*senha*/
+    max-width: 16px;
+    max-height: 16px;
+    margin-top: 10px;
+    left: 30px;
+   
+}
+
+#iconCadastroEmail {  /*Nome*/
+    max-width: 16px;
+    max-height: 16px;
+    margin-top: 13px;
+    left: 30px;
+
+}
+
+#iconCadastroSenha {     /*Email*/
+    margin-top: 40px;
+    left: 30px;
+}
+
+#login{
+    margin-left: 120px;
+    margin-top: 20px;
+    padding: 15px;
+    width: 150px;
+}

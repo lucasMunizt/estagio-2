@@ -18,7 +18,7 @@ html{
 }
 .img{
     background-image: url('../assets/imgLogin.png');
-    width: 400px;
+    width: 450px;
     height: 500px;
     background-size: cover;
     background-repeat: no-repeat;
@@ -126,4 +126,14 @@ form{
     width: 200px;
     padding: 15px;
     background-color: #08A888;
+}
+
+#iconSenhaLogin{
+   margin-top: 40px;
+   left: 30px;
+}
+
+#iconEmailLogin{
+    margin-top: 40px;
+    left: 30px;
 }
