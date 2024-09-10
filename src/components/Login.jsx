@@ -9,9 +9,9 @@ const Login = () => {
     <Logins
       titulo="NutriCard"
       butaoId1="criar-conta"
-      butaoValor1="Criar conta"
-      titulo2="Olá Novamente"
-      span="Seja Bem Vindo"
+      butaoValor1="Criar Conta"
+      titulo2="Olá Novamente!"
+      span="Seja Bem Vindo!"
       inputId1="email"
       iconEmail={iconEmail}
       placeholder1="Coloque seu Email"

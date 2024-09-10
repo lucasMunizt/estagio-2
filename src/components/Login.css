@@ -84,14 +84,19 @@ form{
     margin-top: 20px;
 }
 
-#email,#senha{
-    margin-left: 20px;
-    margin-top: 30px;
+#email{
+    margin-left: 30px;
+    margin-top: 20px;
+}
+
+#senha{
+    margin-left: 30px;
+    margin-top: 10px;
 }
 
 #butao-entrar{
     margin-top: 20px;
-    margin-left: 20px;
+    margin-left: 30px;
 }
 
 .senha-esquecida {
@@ -99,7 +104,7 @@ form{
     align-items: center;
     justify-content: center;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 30px;
 }
 
 .senha-esquecida::before,
@@ -128,12 +133,11 @@ form{
     background-color: #08A888;
 }
 
-#iconSenhaLogin{
-   margin-top: 40px;
-   left: 30px;
-}
-
 #iconEmailLogin{
-    margin-top: 40px;
-    left: 30px;
+    margin-top: 30px;
+    left: 40px;
+}
+#iconSenhaLogin{
+   margin-top: 20px;
+   left: 40px;
 }

@@ -1,10 +1,12 @@
-#nome {
+#idCadastroNome {
     margin-top: 2px;
     margin-left: 20px;
+    margin-bottom: 20px;
 }
 
-#email {
+#idCadastroEmail {
     margin-bottom: 20px;
+    margin-left: 20px;
 }
 
 #confirm-senha {
@@ -41,12 +43,12 @@
 }
 
 #iconCadastroSenha {     /*Email*/
-    margin-top: 40px;
+    margin-top: 10px;
     left: 30px;
 }
 
-#login{
-    margin-left: 120px;
+#idCadastoLogin{
+    margin-left: 90px;
     margin-top: 20px;
     padding: 15px;
     width: 150px;

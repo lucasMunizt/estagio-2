@@ -67,4 +67,29 @@ form{
 .invertido {
     display: flex;
     flex-direction: row-reverse; /* Inverte a posição da imagem e do formulário */
-  }
+}
+
+@media (max-width:900px) {
+    
+    .img{
+        display: none;
+    }
+    .quadrado-principal {
+        width: 100%; /* Deixa o card ocupar toda a largura disponível */
+        max-width: 400px; /* Define uma largura máxima para o card */
+        justify-content: center;
+        height: auto; /* Ajusta a altura para se adaptar ao conteúdo */
+    }
+
+    .card {
+        width: 100%;
+        max-width: 400px; /* Mantém a largura máxima do card */
+        height: auto; /* Deixa a altura se ajustar automaticamente ao conteúdo */
+    }
+
+    .card-body {
+        width: 100%;
+        height: auto; /* Ajusta a altura do card-body conforme o conteúdo */
+    }
+   
+}

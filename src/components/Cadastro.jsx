@@ -9,17 +9,17 @@ const Cadastro = () => {
   return (
     <Logins
       titulo="NutriCard"
-      butaoId1="login"
-      butaoValor1="Fazer Login"
+      butaoId1="idCadastoLogin"
+      butaoValor1="Faça Login"
       titulo2="Crie sua Conta"
       span="Seja Bem Vindo"
-      inputId1="nome"
+      inputId1="idCadastroNome"
       iconEmail={iconPessoal}
       placeholder1="Coloque Seu Nome"
       typer1="text"
-      inputId2="email"
+      inputId2="idCadastroEmail"
       iconSenha={iconEmail}
-      placeholder2="Crie Seu Email"
+      placeholder2="Coloque Seu Email"
       type2="email"
       butaoValor2="Cadastrar"
       butaoId2="butao-cadastrar"

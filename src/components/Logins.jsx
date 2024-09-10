@@ -46,9 +46,12 @@ const Logins = ({
                   idImg={idImgPersona}/>
                 )}
                 <Butao valor={butaoValor2} id={butaoId2} />
+               {!isCadastro &&(
+
                 <div className="senha-esquecida">
                   <p><a href="./Cadastro.jsx">{a}</a></p>
                 </div>
+               )}
               </form>
             </div>
           </div>
