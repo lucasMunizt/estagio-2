@@ -2,9 +2,9 @@ import { useState } from 'react'
 
 import './App.css'
 import Input from './components/input/Input'
-import Login from './components/Login'
-import Cadastro from './components/Cadastro'
-import Home from './Home'
+import Login from './telas/Login'
+import Cadastro from './telas/Cadastro'
+import Home from './telas/Home'
 
 function App() {
 

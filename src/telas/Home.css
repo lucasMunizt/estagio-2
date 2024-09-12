@@ -1,0 +1,158 @@
+header{
+    background-color: #B8EEE3;
+    padding: 20px;
+}
+
+header h1{
+    text-align: center;
+    color: #077660;
+}
+
+.descrisao-home{
+    text-align: center;
+    margin-top: 20px;
+    
+}
+
+.descrisao-home h3,span{
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.descrisao-home  h3{
+    margin-bottom: 20px;
+
+}
+
+#pesquisa-home{
+  margin-left: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 600px;
+  margin-top: 40px;
+  background-color: #B3E5DB;
+  margin-bottom: 60px;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 10px 40px 10px 10px; /* Espaço para o ícone à direita */
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    padding-left: 38px; 
+}
+
+
+#iconBusca{
+    left: 410px;
+    position: absolute;
+    margin-top: 12px;
+}
+
+.nome-frut{
+ margin-bottom: 50px;
+ margin-left: 80px;
+ font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+   
+}
+
+.mySwiper{
+   margin-bottom: 40px; 
+
+}
+
+
+@media(max-width:1200px){
+    #pesquisa-home{
+        margin-left: 310px;
+      }
+
+      #iconBusca{
+        left: 320px;
+        position: absolute;
+        margin-top: 12px;
+    } 
+}
+
+@media(max-width:960px){
+    #pesquisa-home{
+      margin-left: 150px;
+    }
+
+    #iconBusca{
+        left: 160px;
+        position: absolute;
+        margin-top: 12px;
+    }
+
+}
+
+@media(max-width:860px){
+    #pesquisa-home{
+      margin-left: 120px;
+    }
+
+    #iconBusca{
+        left: 130px;
+        position: absolute;
+        margin-top: 12px;
+    }
+
+}
+
+@media(max-width:760px){
+    #pesquisa-home{
+      margin-left: 100px;
+    }
+
+    #iconBusca{
+        left: 110px;
+        position: absolute;
+        margin-top: 12px;
+    }
+
+}
+
+
+@media(max-width:660px){
+    #pesquisa-home{
+      margin-left: 90px;
+      width: 500px;
+    }
+
+    #iconBusca{
+        left: 100px;
+        position: absolute;
+        margin-top: 12px;
+    }
+
+}
+
+@media(max-width:580px){
+    #pesquisa-home{
+      margin-left: 0px;
+      width: 250px;
+    }
+
+    #iconBusca{
+        left:10px;
+        position: absolute;
+        margin-top: 50px;
+    }
+
+    .div-pai{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nome-frut{
+        margin-left: 50px;     
+       }
+}

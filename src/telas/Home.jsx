@@ -5,15 +5,16 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import { FreeMode, Pagination } from "swiper/modules";
-import Card from "./components/Card/Card";
-import fruta from "../src/assets/fruta.jpg";
-import fruta2 from "../src/assets/fruta.jpeg";
+import Card from "../components/Card/Card";
+import fruta from "../assets/fruta.jpg";
+import fruta2 from "../assets/fruta.jpeg";
 import "./Home.css";
-import Input from "./components/input/Input";
-import iconBusca from "./assets/icons/iconBusca.png";
+import Input from "../components/input/Input";
+import iconBusca from "../assets/icons/iconBusca.png";
 const Home = () => {
   const [cards, setCards] = useState(3);
   const [cardsEspassamento, setcardsEspassament] = useState(10);
+  const [busca,setBusca] = useState('');
   useEffect(() => {
     function handleResize() {
       if (window.innerWidth < 820 && window.innerWidth > 560) {
@@ -34,11 +35,16 @@ const Home = () => {
     };
   }, []);
 
+    const handleBuscar = (e) =>{
+        setBusca(e.target.value);
+    }
+
   return (
     <>
       <header>
         <h1>nutricard</h1>
       </header>
+      <div className="div-pai">
       <div className="descrisao-home">
         <h3>O que você está buscando ?</h3>
         <span id="text">
@@ -52,7 +58,10 @@ const Home = () => {
         type="text"
         placeholder="Pesquisar"
         idImg="iconBusca"
+        onChange={handleBuscar}
       />
+      </div>
+     
       <h4 className="nome-frut">Frutas</h4>
       <div className="container-home">
         <Swiper

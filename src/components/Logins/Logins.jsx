@@ -1,7 +1,7 @@
 import React from 'react'
 import './Logins.css'
-import Input from './input/Input'
-import Butao from './Butao/Butao'
+import Input from '../input/Input'
+import Butao from '../Butao/Butao'
 
 const Logins = ({
   titulo, butaoId1, butaoValor1, titulo2, span,

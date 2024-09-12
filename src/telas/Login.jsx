@@ -1,5 +1,5 @@
 import React from 'react'
-import Logins from './Logins'
+import Logins from '../components/Logins/Logins'
 import iconEmail from '../assets/icons/iconEmail.png'
 import iconSenha from '../assets/icons/iconSenha.png'
 import './Login.css'
