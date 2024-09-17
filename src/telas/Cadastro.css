@@ -2,15 +2,21 @@
     margin-top: 2px;
     margin-left: 20px;
     margin-bottom: 20px;
+    border: 1px solid rgb(243, 235, 235);
+    border-radius: 15px;
 }
 
 #idCadastroEmail {
     margin-bottom: 20px;
     margin-left: 20px;
+    border: 1px solid rgb(243, 235, 235);
+    border-radius: 15px;
 }
 
 #confirm-senha {
     margin-left: 20px;
+    border: 1px solid rgb(243, 235, 235);
+    border-radius: 15px;
 }
 
 #butao-cadastrar {

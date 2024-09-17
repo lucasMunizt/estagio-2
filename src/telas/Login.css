@@ -78,24 +78,31 @@ html{
     font-style: normal;
     font-size: 13px;
     color: #797575;
+    
 }
 
 form{
-    margin-top: 20px;
+    margin-bottom: 290px;
+    padding-top: 20px;
 }
 
 #email{
     margin-left: 30px;
     margin-top: 20px;
+    margin-bottom: 30px;
+    border: 1px solid rgb(243, 235, 235);
+    border-radius: 15px;
 }
 
 #senha{
     margin-left: 30px;
     margin-top: 10px;
+    border: 1px solid rgb(243, 235, 235);
+    border-radius: 15px;
 }
 
 #butao-entrar{
-    margin-top: 20px;
+    margin-top: 30px;
     margin-left: 30px;
 }
 
