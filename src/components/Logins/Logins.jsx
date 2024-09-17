@@ -2,6 +2,7 @@ import React from 'react'
 import './Logins.css'
 import Input from '../input/Input'
 import Butao from '../Butao/Butao'
+import { useNavigate } from 'react-router-dom'; 
 
 const Logins = ({
   titulo, butaoId1, butaoValor1, titulo2, span,
@@ -11,6 +12,13 @@ const Logins = ({
   inputIdExtra, iconExtra, placeholderExtra, typeExtra,
   layoutInvertido = false,idImgEmail,idImgSenha,idImgPersona
 }) => {
+
+  const navigate = useNavigate();
+  
+  const handleEntrarClick = () =>{
+    navigate('/home');
+  }
+
   return (
     <div>
       <div className="container">
@@ -45,7 +53,7 @@ const Logins = ({
                   type={typeExtra} 
                   idImg={idImgPersona}/>
                 )}
-                <Butao valor={butaoValor2} id={butaoId2} />
+                <Butao valor={butaoValor2} id={butaoId2} onClick={handleEntrarClick} />
                {!isCadastro &&(
 
                 <div className="senha-esquecida">
