@@ -1,51 +1,80 @@
-
-.conatiner-card{
-    background-color: #ffff;
-    width: 300px;
-    height: 400px;
-    border: none;
-    border-radius: 10px;
-    box-shadow: rgb(177, 177, 177) 1px 1px 1px 1px;
+.container-card-pai {
+  border: none;
+  background: none;
+  padding: 0;
+  width: 100%;
+  display: block;
+  cursor: pointer;
 }
 
-.container-card-pai{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 30px;
-}
-
-
-
-.card-img {
-    width: 100%; /* Faz com que a imagem ocupe toda a largura disponível */
-    height: 60%; /* Ajusta a altura da imagem conforme necessário */
-    overflow: hidden; /* Garante que a imagem não ultrapasse os limites do contêiner */
+.conatiner-card {
+  width: 300px;
+  border-radius:8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background-color: #fff;
+  margin: 10px auto;
+  color: black;
+  height: 440px;
 }
 
 .card-img img {
-  width: 300px;
-  height: 150px;
-  object-fit: cover; /* Ajusta a imagem para cobrir o contêiner sem distorção */
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 
-.text-informacao{
-    font-size: 18px;
-   padding-left: 20px;
-   margin-top: -70px;
+.text-informacao {
+  padding: 15px;
 }
 
-.text-informacao h5{
-   margin-bottom: 20px;
+.descricao{
+  display: flex;
+  margin-bottom: 20px;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
 }
 
-.text-informacao span{
- margin: 0;
+.descricao span {
+  display: block;
+  margin-left: 10px;
+  align-items: center;
+  font-size: 15px;
+  margin-top: 10px;
 }
 
-.h5-nutricao{
-    margin-top: 10px;
- 
+.valores-nutricionais span {
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  margin-right: 20px;
 }
 
+.informacoes{
+  align-items: center;
+  display: flex;
+  margin-left: -20px;
+  margin-top: 10px;
+}
 
+#nome{
+  margin-top: 20px;
+  font-size: 15px;
+}
+
+#calorias, #proteina,#massa{
+background-color: rgba(138, 115, 115, 0);
+color: rgb(0, 0, 0);
+border-radius: 50%; /* Torna o elemento circular */
+width: 50px;
+height: 50px;
+padding: 30px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 12px;
+font-weight: bold;
+text-align: center;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); 
+}

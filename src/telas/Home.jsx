@@ -11,6 +11,7 @@ import fruta2 from "../assets/fruta.jpeg";
 import "./Home.css";
 import Input from "../components/input/Input";
 import iconBusca from "../assets/icons/iconBusca.png";
+import ArrayFrutas from "../data/Frutas";
 const Home = () => {
   const [cards, setCards] = useState(3);
   const [cardsEspassamento, setcardsEspassament] = useState(10);
@@ -36,8 +37,15 @@ const Home = () => {
   }, []);
 
     const handleBuscar = (e) =>{
-        setBusca(e.target.value);
+      e.preventDefault();
+      setBusca(e.target.value);
+      
     }
+
+    const GetRamdomFrutas = (frutas) =>{
+        return frutas.sort(()=>Math.random()-0.5).slice(0,5);
+    }
+
 
   return (
     <>
@@ -59,6 +67,7 @@ const Home = () => {
         placeholder="Pesquisar"
         idImg="iconBusca"
         onChange={handleBuscar}
+      
       />
       </div>
      
@@ -74,21 +83,19 @@ const Home = () => {
           modules={[FreeMode, Pagination]}
           className="mySwiper"
         >
-          <SwiperSlide>
-            <Card img={fruta2} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card img={fruta} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card img={fruta} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card img={fruta} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card img={fruta2} />
-          </SwiperSlide>
+          {GetRamdomFrutas(ArrayFrutas).map((frutavetor, index) => (
+            <SwiperSlide key={frutavetor.id}>
+              <Card
+              img={fruta}
+              descrisao={frutavetor.sobre}
+              kcal={frutavetor.kcal}
+              nome={frutavetor.nome}              
+              />
+              <br />
+              <br />
+              <br />
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
       <h4 className="nome-frut">Verduras</h4>
