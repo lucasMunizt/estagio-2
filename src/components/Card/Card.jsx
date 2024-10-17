@@ -1,12 +1,19 @@
 import React from 'react';
 import './Card.css';
-
+import Modal from '../Modal/Modal'
+import { useState, useEffect } from "react";
 const Card = ({ id, img, descrisao, kcal,nome }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false); // Estado do modal
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
     <button
       onClick={(e) => {
         e.preventDefault();
         console.log("Card clicado!");
+        openModal();
       }}
       className="container-card-pai" // Define o botão com a classe principal
     >
@@ -28,6 +35,11 @@ const Card = ({ id, img, descrisao, kcal,nome }) => {
             </div>
             
           </div>
+          <Modal isOpen={isModalOpen} onClose={closeModal}>
+            <h2>Conteúdo do Modal</h2>
+            <p>Isso é um modal no React.</p>
+            <button onClick={closeModal}>Fechar</button>
+           </Modal>
         </div>
       </div>
     </button>

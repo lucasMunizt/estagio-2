@@ -15,7 +15,7 @@
   background-color: #fff;
   margin: 10px auto;
   color: black;
-  height: 440px;
+  height: 480px;
 }
 
 .card-img img {
@@ -40,9 +40,13 @@
   display: block;
   margin-left: 10px;
   align-items: center;
-  font-size: 15px;
+  font-size: 14px;
   margin-top: 10px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
 }
+
 
 .valores-nutricionais span {
   display: block;
@@ -55,7 +59,7 @@
   align-items: center;
   display: flex;
   margin-left: -20px;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 #nome{
