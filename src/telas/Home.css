@@ -36,6 +36,19 @@ header h1{
   margin-bottom: 60px;
 }
 
+#lista-busca{
+    list-style: none;
+    padding: 0;
+    margin-top: -60px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 600px;
+    background-color: #fff;
+    margin-left:400px;
+    margin-bottom:40px;
+}
+
+
 .input-container input {
     width: 100%;
     padding: 10px 40px 10px 10px; /* Espaço para o ícone à direita */
@@ -77,6 +90,12 @@ header h1{
         position: absolute;
         margin-top: 12px;
     } 
+
+    #lista-busca{
+        width: 600px;
+        margin-left:310px;
+    }
+    
 }
 
 @media(max-width:960px){
@@ -88,6 +107,11 @@ header h1{
         left: 160px;
         position: absolute;
         margin-top: 12px;
+    }
+
+    #lista-busca{
+        width: 600px;
+        margin-left:150px;
     }
 
 }
@@ -103,11 +127,16 @@ header h1{
         margin-top: 12px;
     }
 
+    #lista-busca{
+        width: 600px;
+        margin-left:120px;
+    }
 }
 
 @media(max-width:760px){
     #pesquisa-home{
       margin-left: 100px;
+      width: 560px;
     }
 
     #iconBusca{
@@ -116,6 +145,10 @@ header h1{
         margin-top: 12px;
     }
 
+    #lista-busca{
+        width: 560px;
+        margin-left:100px;
+    }
 }
 
 
@@ -129,6 +162,11 @@ header h1{
         left: 100px;
         position: absolute;
         margin-top: 12px;
+    }
+
+    #lista-busca{
+        width: 500px;
+        margin-left:90px;
     }
 
 }
@@ -154,5 +192,10 @@ header h1{
 
     .nome-frut{
         margin-left: 50px;     
-       }
+    }
+
+    #lista-busca{
+        width: 250px;
+        margin-left:0px;
+    }
 }

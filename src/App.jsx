@@ -5,6 +5,7 @@ import Input from './components/input/Input'
 import Login from './telas/Login'
 import Cadastro from './telas/Cadastro'
 import Home from './telas/Home'
+import DadosPessoais from './telas/DadosPessoais'
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
         <Login/> 
         <Cadastro/>
         <Home/>
+        <DadosPessoais/>
     </>
   )
 }

@@ -12,10 +12,20 @@ import "./Home.css";
 import Input from "../components/input/Input";
 import iconBusca from "../assets/icons/iconBusca.png";
 import ArrayFrutas from "../data/Frutas";
+import Modal from "../components/Modal/Modal";
 const Home = () => {
   const [cards, setCards] = useState(3);
   const [cardsEspassamento, setcardsEspassament] = useState(10);
   const [busca,setBusca] = useState('');
+  const [sugestoes,setSugestoes] = useState([])
+  const [isModalOpen, setIsModalOpen] = useState(false); // Estado do modal
+  const [frutaSelecionada, setFrutaSelecionada] = useState(null);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = (e) => setIsModalOpen(false)
+   
+  
+  
+  
   useEffect(() => {
     function handleResize() {
       if (window.innerWidth < 820 && window.innerWidth > 560) {
@@ -38,9 +48,24 @@ const Home = () => {
 
     const handleBuscar = (e) =>{
       e.preventDefault();
-      setBusca(e.target.value);
-      
-    }
+      const texto = e.target.value; 
+      setBusca(texto);
+      if(texto.length > 0){
+        const filtrados = ArrayFrutas.filter((fruta)=>
+          fruta.nome.toLowerCase().startsWith(texto.toLowerCase())
+        );
+        setSugestoes(filtrados.slice(0,5));
+      }else{
+        setSugestoes([]);
+      }
+    };
+
+    const handleSelect = (fruta) => {
+      setBusca(fruta.nome);
+      setFrutaSelecionada(fruta)
+      openModal();
+      setSugestoes([]);
+    } 
 
     const GetRamdomFrutas = (frutas) =>{
         return frutas.sort(()=>Math.random()-0.5).slice(0,5);
@@ -51,6 +76,9 @@ const Home = () => {
     <>
       <header>
         <h1>nutricard</h1>
+        <div className="modal-perfil-container">
+          
+        </div>
       </header>
       <div className="div-pai">
       <div className="descrisao-home">
@@ -67,8 +95,26 @@ const Home = () => {
         placeholder="Pesquisar"
         idImg="iconBusca"
         onChange={handleBuscar}
+        value={busca}
       
       />
+       {sugestoes.length > 0 &&(
+          <ul id="lista-busca">
+            {sugestoes.map((fruta)=>(
+              <li
+              key={fruta.id}
+              onClick={() => handleSelect(fruta)}
+              style={{
+                padding: '20px',
+                cursor: 'pointer',
+                borderBottom: '1px solid #eee',
+                
+              }}>
+                {fruta.nome}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
      
       <h4 className="nome-frut">Frutas</h4>
@@ -127,6 +173,17 @@ const Home = () => {
           </SwiperSlide>
         </Swiper>
       </div>
+
+      {isModalOpen && frutaSelecionada &&(
+        <Modal
+        nome={frutaSelecionada.nome}
+        descricao={frutaSelecionada.sobre}
+        kcal={frutaSelecionada.kcal}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        img={fruta}
+        />
+      )}
     </>
   );
 };

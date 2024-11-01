@@ -2,6 +2,16 @@ html{
     background-color: #EFEFEF;
 }
 
+input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+    
+}
+input[type=number] { 
+   -moz-appearance: textfield;
+   appearance: textfield;
+
+}
+
 .quadrado-principal{
     background-color: #979696;
     width: 780px;
@@ -68,6 +78,27 @@ form{
     display: flex;
     flex-direction: row-reverse; /* Inverte a posição da imagem e do formulário */
 }
+
+.campos-valores{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 20px;
+    
+}
+
+#idade,#peso,#altura {
+    width: 100px;
+    height: 40px; 
+    padding-left: 0px;
+
+}
+
+#idade,#peso,#altura::placeholder{
+    text-align: center;
+}
+
+
 
 @media (max-width:900px) {
     

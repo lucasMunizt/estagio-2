@@ -33,7 +33,7 @@ const Cadastro = () => {
       idImgPersona='iconCadastroPersona'  
       idImgEmail='iconCadastroEmail'  
       idImgSenha='iconCadastroSenha'  
-    
+      isInput = {true}
     />
   )
 }

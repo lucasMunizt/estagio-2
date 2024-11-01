@@ -6,6 +6,7 @@ import{createBrowserRouter,RouterProvider,Route} from "react-router-dom"
 import Login from './telas/Login.jsx'
 import Cadastro from './telas/Cadastro.jsx'
 import Home from './telas/Home.jsx'
+import DadosPessoais from './telas/DadosPessoais.jsx'
 const router = createBrowserRouter([
   
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: 'home',
     element: <Home/>
+  },
+  {
+    path: '/DadosPessoais',
+    element: <DadosPessoais/>
   }
 ])
 

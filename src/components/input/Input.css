@@ -12,19 +12,11 @@ input{
    width: 250px;
 }
  
-/* .input-container img {
-   position: absolute;
-   left: 30px; 
-   top: 70%;
-   transform: translateY(-50%);
-   max-width: 20px;
-   max-height: 20px;
-} */
- .icon{
+.icon{
    max-width: 20px;
    max-height: 20px;
    position: absolute;
- }
+}
 
 
 input::placeholder{

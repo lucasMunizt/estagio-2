@@ -1,0 +1,29 @@
+#id-DadosPessoais-input-1{
+    margin-bottom: 20px;
+    border-color: #45C8AE;
+    border: 1px solid rgb(214, 214, 214);
+    width: 320px;
+    margin-left: 10px;
+    
+}
+
+#id-DadosPessoais-input-1:hover{
+  border-color: #45C8AE;
+}
+
+#iconDadosPessoaisEmail{
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+#idDadosPessoais-1{
+    margin-top: 40px;
+    margin-left: 60px;
+    width: 200px;
+}
+
+#butao-salvar-dadosPessoais{
+  margin-top: 40px;
+  margin-left: 10px;
+  width: 320px;
+}

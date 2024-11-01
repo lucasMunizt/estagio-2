@@ -1,7 +1,7 @@
-import React from 'react'
-import './Logins.css'
-import Input from '../input/Input'
-import Butao from '../Butao/Butao'
+import React from 'react';
+import './Logins.css';
+import Input from '../input/Input';
+import Butao from '../Butao/Butao';
 import { useNavigate } from 'react-router-dom'; 
 
 const Logins = ({
@@ -10,15 +10,13 @@ const Logins = ({
   inputId2, iconSenha, placeholder2, type2,
   butaoValor2, butaoId2, a, isCadastro = false,
   inputIdExtra, iconExtra, placeholderExtra, typeExtra,
-  layoutInvertido = false,idImgEmail,idImgSenha,idImgPersona
+  layoutInvertido = false, idImgEmail, idImgSenha, idImgPersona,
+  isDados = false, isInput = true, onInputChange, onSave, onInputChangeNome,
+  onInputChangeIdade,onInputChangePeso,onInputChangeAltura
 }) => {
 
   const navigate = useNavigate();
   
-  const handleEntrarClick = () =>{
-    navigate('/home');
-  }
-
   return (
     <div>
       <div className="container">
@@ -33,40 +31,71 @@ const Logins = ({
               <span>{span}</span>
               <form action="">
                 <Input
-                 id={inputId1}
-                 icon={iconEmail} 
-                 placeholder={placeholder1} 
-                 type={typer1} 
-                 idImg={idImgEmail}/>
-                <Input 
+                  id={inputId1}
+                  icon={iconEmail} 
+                  placeholder={placeholder1} 
+                  type={typer1} 
+                  idImg={idImgEmail}
+                  onChange={onInputChangeNome} // Certifique-se de que este campo captura mudanças
+                />
+                {isInput && <Input 
                   id={inputId2}
                   icon={iconSenha}
                   placeholder={placeholder2}
                   type={type2}  
-                  idImg={idImgSenha}/>
-                {/* Campo extra apenas na tela de cadastro */}
-                {isCadastro && (
+                  idImg={idImgSenha}
+                  onChange={onInputChange} // Certifique-se de que este campo captura mudanças
+                />}
+                
+                {isCadastro && isInput && (
                   <Input 
-                  id={inputIdExtra}
-                  icon={iconExtra} 
-                  placeholder={placeholderExtra} 
-                  type={typeExtra} 
-                  idImg={idImgPersona}/>
+                    id={inputIdExtra}
+                    icon={iconExtra} 
+                    placeholder={placeholderExtra} 
+                    type={typeExtra} 
+                    idImg={idImgPersona}
+                    onChange={onInputChange} // Corrige aqui
+                  />
                 )}
-                <Butao valor={butaoValor2} id={butaoId2} onClick={handleEntrarClick} />
-               {!isCadastro &&(
+                
+                {/* Renderiza os campos de input para idade, peso e altura */}
+                {isDados && (
+                  <div className="campos-valores">
+                    <input 
+                      type="number" 
+                      id="idade" 
+                      placeholder="Idade"
+                      onChange={onInputChangeIdade} // Corrige aqui
+                    />
+                    <input 
+                      type="number" 
+                      id="peso" 
+                      placeholder="Peso"
+                      onChange={onInputChangePeso} // Corrige aqui
+                    />
+                    <input 
+                      type="number" 
+                      id="altura" 
+                      placeholder="Altura"
+                      onChange={onInputChangeAltura} // Corrige aqui
+                    />
+                  </div>
+                )}
 
-                <div className="senha-esquecida">
-                  <p><a href="./Cadastro.jsx">{a}</a></p>
-                </div>
-               )}
+                <Butao valor={butaoValor2} id={butaoId2} onClick={onSave} />
+                
+                {!isCadastro && (
+                  <div className="senha-esquecida">
+                    <p><a href="./Cadastro.jsx">{a}</a></p>
+                  </div>
+                )}
               </form>
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Logins
+export default Logins;
