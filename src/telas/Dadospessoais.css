@@ -3,7 +3,6 @@
     border-color: #45C8AE;
     border: 1px solid rgb(214, 214, 214);
     width: 320px;
-    margin-left: 10px;
     
 }
 
@@ -13,17 +12,20 @@
 
 #iconDadosPessoaisEmail{
   margin-top: 10px;
-  margin-left: 20px;
+  margin-left: 10px;
 }
 
 #idDadosPessoais-1{
     margin-top: 40px;
-    margin-left: 60px;
+    margin-right: 60px;
     width: 200px;
+    padding: 15px;
+    border-radius: 12px;
 }
 
 #butao-salvar-dadosPessoais{
   margin-top: 40px;
-  margin-left: 10px;
   width: 320px;
+  padding: 15px;
+  border-radius: 12px;
 }
