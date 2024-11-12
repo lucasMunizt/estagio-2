@@ -32,6 +32,19 @@ input[type=number] {
     height: 500px;
 }
 
+#valor-titulo{
+    text-align: center;
+    margin-top: 200px;
+    background-color: #cfcfcf86;
+    width: 200px;   
+    height: 60px;
+    margin-left: 70px;
+    border-radius: 10px;
+    font-family: "Sansita", sans-serif;
+    font-weight: 800;
+    font-style: normal;  
+}
+
 .card{
     background-color: #F5F5F5; 
     width: 429px;
@@ -50,7 +63,8 @@ input[type=number] {
 
 .card-body h1,span{
     margin-top: 50px;
-    margin-left: 20px;
+    text-align: center;
+    margin-right: 40px;
 }
 
 .card-body h1{
@@ -84,14 +98,15 @@ form{
     align-items: center;
     justify-content: space-around;
     margin-top: 20px;
-    
+    margin-right: 0px;
+    gap: 10px;
 }
 
 #idade,#peso,#altura {
     width: 100px;
     height: 40px; 
     padding-left: 0px;
-
+    
 }
 
 #idade,#peso,#altura::placeholder{

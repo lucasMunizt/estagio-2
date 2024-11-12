@@ -2,16 +2,22 @@
 import React, { useState } from 'react';
 import './Card.css';
 import Modal from '../Modal/Modal';
-
-const Card = ({ id, img, descrisao, kcal, nome }) => {
+import moment from 'moment';
+import EventosPadrao from '../Calendario/EventosPadrao';
+const Card = ({ id, img,descrisao , kcal, nome, onSalvarAlimentos }) => {
   const [isModalOpen, setIsModalOpen] = useState(false); // Estado do modal
-
+  const [eventos, setEventos] = useState(EventosPadrao);
   const openModal = () => setIsModalOpen(true);
+  
   const closeModal = (e) => {
       setIsModalOpen(false)
    
   };
-  
+  const adicionarEvento = (novoEvento) => {
+    setEventos((prevEventos) => [...prevEventos, novoEvento]);
+    console.log("adicionarEvento é função:", typeof adicionarEvento === 'function');
+  };
+
   return (
     <>
           <Modal
@@ -22,13 +28,16 @@ const Card = ({ id, img, descrisao, kcal, nome }) => {
             descricao={descrisao}
             calorias={kcal}
             proteinas={kcal}
+            id='butao-fecha-modal'
+            onClick={adicionarEvento}
+            
+            modalButton={true}
           />
 
 
       <button
         onClick={(e) => {
           e.preventDefault();
-          console.log("Card clicado!");
           openModal();
         }}
         className="container-card-pai"
@@ -40,7 +49,6 @@ const Card = ({ id, img, descrisao, kcal, nome }) => {
             <h4 id="nome">{nome}</h4>
           </div>
           <div className="text-informacao">
-            {/* modal */}
             <div className="descricao">
               <span>{descrisao}</span>
             </div>
@@ -58,8 +66,6 @@ const Card = ({ id, img, descrisao, kcal, nome }) => {
         </div>
         
       </button>
-
-      {/* Renderizando o modal fora do botão */}
     
     </>
   );

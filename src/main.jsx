@@ -7,23 +7,22 @@ import Login from './telas/Login.jsx'
 import Cadastro from './telas/Cadastro.jsx'
 import Home from './telas/Home.jsx'
 import DadosPessoais from './telas/DadosPessoais.jsx'
+import Calendario from './components/Calendario/Calendario.jsx'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap-icons/font/bootstrap-icons.css'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 const router = createBrowserRouter([
   
   {
-    path: 'login',
-    element: <Login/>,
-  },
-  {
-    path: 'cadastro',
-    element: <Cadastro/>,
-  },
-  {
-    path: 'home',
-    element: <Home/>
-  },
-  {
-    path: '/DadosPessoais',
-    element: <DadosPessoais/>
+    path: '/',
+    element: <App />, // Rota principal usando o componente App
+    children: [
+      { path: 'login', element: <Login /> },
+      { path: 'cadastro', element: <Cadastro /> },
+      { path: 'home', element: <Home /> },
+      { path: 'dadosPessoais', element: <DadosPessoais /> },
+      {path: 'calendario', element: <Calendario/> }
+    ]
   }
 ])
 
@@ -32,7 +31,7 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    {/* <App /> */}
+    <App />
     <RouterProvider router={router}/>
   </StrictMode>,
 )

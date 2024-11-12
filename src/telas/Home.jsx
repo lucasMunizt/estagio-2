@@ -13,6 +13,7 @@ import Input from "../components/input/Input";
 import iconBusca from "../assets/icons/iconBusca.png";
 import ArrayFrutas from "../data/Frutas";
 import Modal from "../components/Modal/Modal";
+import Header from "../components/Header/Header";
 const Home = () => {
   const [cards, setCards] = useState(3);
   const [cardsEspassamento, setcardsEspassament] = useState(10);
@@ -74,12 +75,13 @@ const Home = () => {
 
   return (
     <>
-      <header>
+      {/* <header>
         <h1>nutricard</h1>
         <div className="modal-perfil-container">
           
         </div>
-      </header>
+      </header> */}
+      <Header/>
       <div className="div-pai">
       <div className="descrisao-home">
         <h3>O que você está buscando ?</h3>
@@ -182,6 +184,9 @@ const Home = () => {
         isOpen={isModalOpen}
         onClose={closeModal}
         img={fruta}
+        id = 'butao-fecha'
+        
+        
         />
       )}
     </>

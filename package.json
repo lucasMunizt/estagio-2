@@ -10,8 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "moment": "^2.30.1",
     "react": "^18.3.1",
+    "react-big-calendar": "^1.15.0",
     "react-dom": "^18.3.1",
+    "react-modal": "^3.16.1",
     "react-router-dom": "^6.26.2",
     "swiper": "^11.1.12"
   },

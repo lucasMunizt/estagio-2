@@ -1,28 +1,33 @@
 #idCadastroNome {
     margin-top: 2px;
-    margin-left: 20px;
+
     margin-bottom: 20px;
-    border: 1px solid rgb(243, 235, 235);
+    border: 1px solid rgb(209, 209, 209);
     border-radius: 15px;
+    width: 300px;
 }
 
 #idCadastroEmail {
     margin-bottom: 20px;
-    margin-left: 20px;
-    border: 1px solid rgb(243, 235, 235);
+ 
+    border: 1px solid rgb(209, 209, 209);
     border-radius: 15px;
+    width: 300px;
 }
 
 #confirm-senha {
-    margin-left: 20px;
-    border: 1px solid rgb(243, 235, 235);
+    
+    border: 1px solid rgb(209, 209, 209);
     border-radius: 15px;
+    width: 300px;
 }
 
 #butao-cadastrar {
-    margin-left: 20px;
+    border-radius: 12px;
     padding: 15px;
     margin-top: 20px;
+    width: 320px;
+    margin-right: 70px;
 }
 
 .card-body {
@@ -35,8 +40,8 @@
 #iconCadastroPersona {        /*senha*/
     max-width: 16px;
     max-height: 16px;
-    margin-top: 10px;
-    left: 30px;
+    margin-top: 13px;
+    left: 10px;
    
 }
 
@@ -44,18 +49,19 @@
     max-width: 16px;
     max-height: 16px;
     margin-top: 13px;
-    left: 30px;
+    left: 10px;
 
 }
 
 #iconCadastroSenha {     /*Email*/
-    margin-top: 10px;
-    left: 30px;
+    margin-top: 13px;
+    left: 10px;
 }
 
 #idCadastoLogin{
-    margin-left: 90px;
+    border-radius: 12px;
     margin-top: 20px;
     padding: 15px;
-    width: 150px;
+    width: 190px;
+    margin-right: 60px;
 }

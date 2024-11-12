@@ -6,15 +6,13 @@ import Login from './telas/Login'
 import Cadastro from './telas/Cadastro'
 import Home from './telas/Home'
 import DadosPessoais from './telas/DadosPessoais'
-
+import Header from './components/Header/Header'
+import { Outlet } from 'react-router-dom'
 function App() {
 
   return (
     <>
-        <Login/> 
-        <Cadastro/>
-        <Home/>
-        <DadosPessoais/>
+      <Outlet /> {/* Renderiza as rotas filhas */}
     </>
   )
 }

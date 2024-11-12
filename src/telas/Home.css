@@ -1,4 +1,4 @@
-header{
+/* header{
     background-color: #B8EEE3;
     padding: 20px;
 }
@@ -6,7 +6,7 @@ header{
 header h1{
     text-align: center;
     color: #077660;
-}
+} */
 
 .descrisao-home{
     text-align: center;
@@ -23,6 +23,19 @@ header h1{
 .descrisao-home  h3{
     margin-bottom: 20px;
 
+}
+
+#butao-fecha{
+  width: 5px;
+  height: 5px;
+  color: black;
+  align-items: center;
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  background-color: #2bb580ab;
+  margin-left: 450px;
+  margin-top: 5px;
 }
 
 #pesquisa-home{

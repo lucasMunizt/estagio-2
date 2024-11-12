@@ -24,18 +24,7 @@ html{
     background-repeat: no-repeat;
 }
 
-.img h1{
-    text-align: center;
-    margin-top: 200px;
-    background-color: #ebe9e986;
-    width: 200px;
-    height: 40px;
-    margin-left: 70px;
-    border-radius: 10px;
-    font-family: "Sansita", sans-serif;
-    font-weight: 800;
-    font-style: normal;  
-}
+
 
 .container img{
     width: 350px;
@@ -87,23 +76,27 @@ form{
 }
 
 #email{
-    margin-left: 30px;
     margin-top: 20px;
     margin-bottom: 30px;
-    border: 1px solid rgb(243, 235, 235);
+    border: 1px solid rgb(209, 209, 209);
     border-radius: 15px;
+    width: 300px;
 }
 
 #senha{
-    margin-left: 30px;
-    margin-top: 10px;
-    border: 1px solid rgb(243, 235, 235);
+    border: 1px solid rgb(209, 209, 209);
     border-radius: 15px;
+    width: 300px;
 }
+
 
 #butao-entrar{
     margin-top: 30px;
-    margin-left: 30px;
+    padding: 15px;
+    border-radius: 12px;
+    margin-right: 30px;
+    width: 300px;
+    margin-bottom: 30px;
 }
 
 .senha-esquecida {
@@ -134,17 +127,18 @@ form{
 
 #criar-conta{
     margin-top: 20px;
-    margin-left: 70px;
+    margin-right: 60px;
     width: 200px;
     padding: 15px;
     background-color: #08A888;
+    border-radius: 12px;
 }
 
 #iconEmailLogin{
     margin-top: 30px;
-    left: 40px;
+    left: 10px;
 }
 #iconSenhaLogin{
-   margin-top: 20px;
-   left: 40px;
+   margin-top: 10px;
+   left: 10px;
 }

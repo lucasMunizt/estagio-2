@@ -1,0 +1,189 @@
+/* Estilos principais do cabeçalho */
+.header-componente {
+    background-color: #B8EEE3;
+    padding: 20px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+#header-menu {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+}
+
+#h1-nutricard {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: #077660;
+    flex: 1;
+    text-align: center;
+    margin-left: 100px;
+}
+
+#img-menu {
+    width: 50px;
+    height: 50px;
+    margin-right: -150px;
+    border-radius: 50%;
+    cursor: pointer;
+    text-align: center;
+}
+
+.navbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.client-name{
+    display: flex;
+    justify-content: space-around;
+}
+
+#valor-nome{
+    margin-top: 10px;
+}
+
+#icone-home{
+    text-decoration: none;
+    color: inherit;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: #f0f0f0;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: black;
+}
+
+.checkbtn {
+    font-size: 30px;
+    color: black;
+    cursor: pointer;
+    display: none;
+    font-family: 'Roboto', sans-serif;
+}
+
+#check {
+    display: none;
+}
+
+/* Estilo do container principal e do título */
+.container {
+    text-align: center;
+}
+
+.container h1 {
+    color: #077660;
+}
+
+.main-container {
+    display: flex;
+    justify-content: flex-end; /* Alinha ao lado direito */
+    gap: 20px;
+}
+
+/* Estilos para a área de informações do cliente */
+.client-info {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    z-index: 1000;
+    position: absolute;
+  
+}
+
+.client-info h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.info-section {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.info-item {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.info-item p {
+    font-size: 14px;
+    margin: 0;
+    color: #333;
+    font-family: "Sansita", serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.info-value {
+    display: block;
+    background-color: #eaeaea;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin: 8px auto 0;
+}
+
+.informacoes-valores{
+    display: flex;
+    justify-content: space-around;
+    gap: 5rem;
+    margin-top: 20px;
+}
+
+
+.valores-pessoais{
+    display: flex;
+    justify-content: space-around;
+    gap: 5rem;
+    margin-top: 20px;
+}
+
+
+.button-section {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.client-button {
+    background-color: #6ec1c2;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.client-button:hover {
+    background-color: #5aa3a3;
+}
+
+
+@media(max-width:580px){
+    #h1-nutricard{
+        margin-left: 0;
+    }
+}
