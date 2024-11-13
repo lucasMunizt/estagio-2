@@ -8,9 +8,7 @@ import Cadastro from './telas/Cadastro.jsx'
 import Home from './telas/Home.jsx'
 import DadosPessoais from './telas/DadosPessoais.jsx'
 import Calendario from './components/Calendario/Calendario.jsx'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap-icons/font/bootstrap-icons.css'
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'
+
 const router = createBrowserRouter([
   
   {

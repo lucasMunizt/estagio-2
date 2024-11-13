@@ -17,28 +17,12 @@ const Modal = ({
   onSalvarAlimentos,
   modalButton = false,
   id,
+  opamen,
 
 }) => {
  
 
   if (!isOpen) return null;
- /* const SalvarAlimentos = () => {
-    const agora = moment();
-    const salvarEventos = {
-        id: Math.random(),
-        title: nome,
-        start: agora.toDate(),
-        end: agora.add(1, 'hour').toDate(),
-        desc: descricao,
-        color: 'green',
-        tipo: 'atividade'
-    };
-    onSalvarAlimentos(salvarEventos);
-    
-    alert("funcionou")
-    
-    onClose();
-};*/
 const SalvarAlimentos = () => {
   const agora = moment();
     EventosPadrao.push({
@@ -62,8 +46,10 @@ const SalvarAlimentos = () => {
   return (
     <div className="modal-overlay">
       <div className="butao-fecha">
+          <div className={opamen}>
+        <button id={id} onClick={onClose} style={{zIndex:'11000'}}>X</button>
 
-        <button id={id} onClick={onClose}>x</button>
+          </div>
       </div>
       <div className="modal-container">
         <img src={img} alt={nome} className="modal-img" />

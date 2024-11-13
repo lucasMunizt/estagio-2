@@ -10,7 +10,9 @@ import EventosPadrao from './EventosPadrao';
 import Modal from '../Modal/Modal';
 import Header from '../Header/Header';
 import Card from '../Card/Card';
-
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap-icons/font/bootstrap-icons.css'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 moment.locale('pt-br'); // Define o locale do moment para português
 const localizer = momentLocalizer(moment); // Passa o moment para o localizer
 

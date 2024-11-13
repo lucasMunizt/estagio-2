@@ -92,26 +92,44 @@ h2 {
 }
 
 .butao-fecha{
-  margin-top: -405px;
   position: absolute;
-  left: 355px;
-  z-index: 1000;
+  left: 80%;
+  transform: translateX(-50%);
+  top: 12%;
+  z-index: 111000;
+}
+
+#butao-fechar{
+  width: 25px;
+  height: 25px;
+  padding: 0;
+  background-color: #2bb580ab;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  color: black;
+  margin-left: -8px;
+  position: fixed;
+  margin-top: 50px;
+}
+
+.test-butao-fechar{
+  position: absolute;
 }
 
 #butao-fecha-modal{
-  width: 105px;
+  width: 5px;
   height:5px;
   color: black;
   align-items: center;
   display: flex;
   position: fixed;
   justify-content: center;
-  /* background-color: rgba(129, 138, 138, 0.712); */
   background-color: #2bb580ab;
+  border-radius: 5px;
 }
 
-
-  
   @media(max-width:1200px){
     .butao-fecha{
       left: 280px;
@@ -128,14 +146,14 @@ h2 {
 
   @media(max-width:860px){
     .butao-fecha{
-      left: 280px;
+      left: 70%;
     }
 
   }
 
   @media(max-width:760px){
     .butao-fecha{
-      left: 280px;
+      left: 75%;
     }
 
 
@@ -144,13 +162,13 @@ h2 {
 
   @media(max-width:660px){
     .butao-fecha{
-      left: 300px;
+      left: 75%;
     }
 
   }
 
   @media(max-width:580px){
     .butao-fecha{
-      left: 280px;
+      left: 75%;
     }
   }

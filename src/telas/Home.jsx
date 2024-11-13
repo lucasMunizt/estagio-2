@@ -178,15 +178,16 @@ const Home = () => {
 
       {isModalOpen && frutaSelecionada &&(
         <Modal
+        
         nome={frutaSelecionada.nome}
         descricao={frutaSelecionada.sobre}
-        kcal={frutaSelecionada.kcal}
+        calorias={frutaSelecionada.kcal}
         isOpen={isModalOpen}
         onClose={closeModal}
         img={fruta}
-        id = 'butao-fecha'
-        
-        
+        id = 'butao-fechar'
+        modalButton = {true}
+        opamen='test-butao-fechar'
         />
       )}
     </>

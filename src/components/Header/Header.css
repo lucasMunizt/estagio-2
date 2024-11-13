@@ -21,7 +21,8 @@
     color: #077660;
     flex: 1;
     text-align: center;
-    margin-left: 100px;
+    margin-left: 50px;
+    text-decoration: none;
 }
 
 #img-menu {

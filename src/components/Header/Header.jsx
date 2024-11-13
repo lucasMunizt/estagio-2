@@ -20,7 +20,7 @@ const Header = () => {
         <div>
             <div className="header-componente">
                 <header id="header-menu">
-                    <h1 id="h1-nutricard">Nutricard</h1>
+                    <h1 id="h1-nutricard"><a href="/home" id='h1-nutricard'>Nutricard</a></h1>
                     <nav className="nav-bar">
                         <div className="navbar-inner">
                             <img src={img} alt="Menu" id="img-menu" onClick={abrirMenu} />
