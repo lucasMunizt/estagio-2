@@ -4,6 +4,7 @@ import img from '../../assets/fruta.jpg';
 import Calendario from '../Calendario/Calendario';
 import { useNavigate } from 'react-router-dom';
 import { Navigate } from 'react-big-calendar';
+import imagemUsusario from '../../assets/icons/iconPersona.png'
 const Header = () => {
   const [menuAberto, setMenuAberto] = useState(false);
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ const Header = () => {
                     <h1 id="h1-nutricard"><a href="/home" id='h1-nutricard'>Nutricard</a></h1>
                     <nav className="nav-bar">
                         <div className="navbar-inner">
-                            <img src={img} alt="Menu" id="img-menu" onClick={abrirMenu} />
+                            <img src={imagemUsusario} alt="Menu" id="img-menu" onClick={abrirMenu} />
                             <input type="checkbox" id="check" />
                             <label htmlFor="check" className="checkbtn"><i className="fas fa-bars"></i></label>
                         </div>

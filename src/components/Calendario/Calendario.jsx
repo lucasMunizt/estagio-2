@@ -140,7 +140,10 @@ const Calendario = () => {
               descricao={eventoSelecionados.desc}
               calorias={eventoSelecionados.calorias}
               proteinas={eventoSelecionados.proteinas}
-              
+              img={eventoSelecionados.img}
+              id='butao-fechar-calendario'
+              edicaoModal = {true}
+              opamen='tes-botao-modal-calendario'
               />
             )}
         </div>

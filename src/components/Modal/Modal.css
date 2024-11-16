@@ -91,6 +91,25 @@ h2 {
   background-color: #2bb57f;
 }
 
+.edicoes{
+  margin-top: 10px;
+  margin-left: 20px;
+  background-color: rgb(243, 156, 156);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: black;
+}
+
+.edicoes:hover{
+  transition: .12s;
+  background-color: rgb(173, 78, 78);
+}
+
 .butao-fecha{
   position: absolute;
   left: 80%;
@@ -99,7 +118,7 @@ h2 {
   z-index: 111000;
 }
 
-#butao-fechar{
+#butao-fechar{  /*Campo busca*/
   width: 25px;
   height: 25px;
   padding: 0;
@@ -109,9 +128,9 @@ h2 {
   justify-content: center;
   border-radius: 5px;
   color: black;
-  margin-left: -8px;
+  margin-left: -258px;
   position: fixed;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .test-butao-fechar{
@@ -170,5 +189,10 @@ h2 {
   @media(max-width:580px){
     .butao-fecha{
       left: 75%;
+    }
+
+    #butao-fechar{
+      margin-left: 0;
+      margin-top: 60px;
     }
   }

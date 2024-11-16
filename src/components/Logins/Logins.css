@@ -113,7 +113,9 @@ form{
     text-align: center;
 }
 
-
+#altura{
+    text-align: center;
+}
 
 @media (max-width:900px) {
     

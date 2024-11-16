@@ -18,7 +18,7 @@ const Modal = ({
   modalButton = false,
   id,
   opamen,
-
+  edicaoModal = false,
 }) => {
  
 
@@ -42,12 +42,16 @@ const SalvarAlimentos = () => {
   onClose();
 };
 
+  const DeletarAlimento = () =>{
+    console.log("ola  ")
+  }
+
 
   return (
     <div className="modal-overlay">
       <div className="butao-fecha">
           <div className={opamen}>
-        <button id={id} onClick={onClose} style={{zIndex:'11000'}}>X</button>
+            <button id={id} onClick={onClose} style={{zIndex:'11000'}}>X</button>
 
           </div>
       </div>
@@ -69,7 +73,12 @@ const SalvarAlimentos = () => {
           />
 
         )}
-       
+        {edicaoModal &&(
+         <div className="edicoes">
+          <i className="bi bi-trash" onClick={DeletarAlimento}></i>
+         
+         </div>
+        )}
       </div>
     </div>
   );

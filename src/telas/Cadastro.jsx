@@ -5,60 +5,80 @@ import iconSenha from '../assets/icons/iconSenha.png'
 import iconPessoal from '../assets/icons/iconPersona.png'
 import './Cadastro.css'
 import { useState } from 'react'
+import { json } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 const Cadastro = () => {
   const [calculoImc,setCalculoImc] = useState();
-  const [altura,setAltura] = useState();
-  const [peso,setPeso] = useState();
-  const [idade,setIdade] = useState();
-  const [nome, setNome] = useState();
+  const [height,setHeight] = useState();
+  const [weight,setWeight] = useState();
+  const [age,setAge] = useState();
+  const [name, setName] = useState();
   const [email, setEmail] = useState();
-  const [senha, setSenha] = useState();
-  const ValoresCadastro = [{}]
+  const [password, setPassword] = useState();
+  const ValoresCadastro = []
+  const url = 'http://localhost:3000/Cadastro' 
+  const navigate = useNavigate();
+
+
   const handleInputChange = (e) =>{
       const {id,value} = e.target;
       if(id === 'altura'){
-        setAltura(value)
-        
+        setHeight(value)
       }
+      
       else if(id === 'peso'){
-        setPeso(value);
+        setWeight(value);
       }
+
       else if(id === 'idade'){
-        setIdade(value);
+        setAge(value);
       }
+
       else if(id === 'idCadastroEmail'){
         setEmail(value);
       }
+
       else if(id === 'idCadastroNome'){
-        setNome(value)
+        setName(value)
       }
 
       else if(id === 'confirm-senha'){
-        setSenha(value);
+        setPassword(value);
       }
   };
 
   const CalcularImc = () =>{
-    if(altura && peso){
-      const imc = (peso / (altura * altura)).toFixed(2);
+    if(height && weight){
+      const imc = (weight / (height * height)).toFixed(2);
       setCalculoImc(imc)
     }
   } 
 
-  const handleSave = (e) =>{
+  const handleSave =  async (e) =>{
+    CalcularImc()
     e.preventDefault()
       ValoresCadastro.push({
-      "altura": altura,
-      "peso": peso,
-      "idade": idade,
-      "nome": nome,
-      "senha": senha,
+      "altura": height,
+      "peso": weight,
+      "idade": age,
+      "name": name,
+      "senha": password,
       "email": email,
       "imc": calculoImc
     })
-    console.log(calculoImc)
-    CalcularImc()
-    console.log(ValoresCadastro)
+    const res = await fetch(url,{
+      method:"POST",
+      headers:{
+        "content-type": "application/json"
+      },
+      body: JSON.stringify(ValoresCadastro)
+    })
+
+    if(res.ok){
+      console.log("Cadastro realizado com sucesso")
+      //navigate('/home')
+    }
+
   };
 
   return (
@@ -70,7 +90,7 @@ const Cadastro = () => {
       span="Seja Bem Vindo!"
       inputId1="idCadastroNome"
       iconEmail={iconPessoal}
-      placeholder1="Coloque Seu Nome"
+      placeholder1="Coloque Seu name"
       typer1="text"
       inputId2="idCadastroEmail"
       iconSenha={iconEmail}

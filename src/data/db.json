@@ -1,0 +1,74 @@
+{
+  "Cadastro": [
+    {
+      "altura": "",
+      "peso": "",
+      "idade": "",
+      "name": "",
+      "senha": "",
+      "email": "",
+      "imc": ""
+    },
+    {
+      "id": "2e30",
+      "altura": "34",
+      "peso": "123",
+      "idade": "23",
+      "name": "lucas",
+      "senha": "FSDS",
+      "email": "lucasmunizteles@gmail.com"
+    },
+    {
+      "id": "246d",
+      "altura": "543",
+      "peso": "4243",
+      "idade": "2323",
+      "name": "pedro",
+      "senha": "AWED",
+      "email": "ASD"
+    },
+    {
+      "id": "0dbb",
+      "altura": "234",
+      "peso": "45",
+      "idade": "354",
+      "name": "pedro",
+      "senha": "234",
+      "email": "lucasmunizteles@gmail.com"
+    },
+    {
+      "id": "83da",
+      "altura": "43",
+      "peso": "34",
+      "idade": "213",
+      "name": "GFD",
+      "senha": "dfgfd",
+      "email": "GFD",
+      "imc": "0.02"
+    },
+    {
+      "0": {
+        "altura": "1.78",
+        "peso": "75",
+        "idade": "213",
+        "name": "GFD",
+        "senha": "dfgfd",
+        "email": "GFD",
+        "imc": "0.02"
+      },
+      "id": "765e"
+    },
+    {
+      "0": {
+        "altura": "1.78",
+        "peso": "75",
+        "idade": "213",
+        "name": "GFD",
+        "senha": "dfgfd",
+        "email": "GFD",
+        "imc": "23.67"
+      },
+      "id": "d386"
+    }
+  ]
+}
