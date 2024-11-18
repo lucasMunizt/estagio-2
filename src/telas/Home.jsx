@@ -214,7 +214,7 @@ const Home = () => {
           modules={[FreeMode, Pagination]}
           className="mySwiper"
         >
-         {/* { 
+         { 
           filteredDataTest.map((item) => (
             <SwiperSlide key={item.food_id}>
               <Card
@@ -231,23 +231,28 @@ const Home = () => {
                 <br />
             </SwiperSlide>
           ))
-      } */}
+         }
         </Swiper>
       </div>
 
-      {isModalOpen && frutaSelecionada &&(
-        <Modal
-        
-        nome={frutaSelecionada.name}
+      {isModalOpen && filteredData.map((index)=>(
+        <Modal key={index.food_id}
+        nome={index.name}
         isOpen={isModalOpen}
         onClose={closeModal}
-        img={`https://img.spoonacular.com/ingredients_500x500/${frutaSelecionada.image}`}
-        id = 'butao-fechar'
-        
-        modalButton = {true}
+        img={`https://img.spoonacular.com/ingredients_500x500/${index.image}`}
+        modalButton={true}
         opamen='test-butao-fechar'
+        carboidratos={index.carbohydrates}
+        calorias={index.calories}
+        sodio={index.sodium}
+        gordura={index.fat}
+        fibra={index.fiber}
+        id='butao-fechar'
+       
         />
-      )}
+      ))}
+
     </>
   );
 };

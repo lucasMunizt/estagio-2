@@ -19,6 +19,10 @@ const Modal = ({
   id,
   opamen,
   edicaoModal = false,
+  carboidratos,
+  sodio,
+  gordura,
+  fibra
 }) => {
  
 
@@ -64,10 +68,14 @@ const SalvarAlimentos = () => {
           
           <div className="test"></div>
           <h4 style={{fontSize:'17px',fontWeight:'500'}}>Valores nutricionais:</h4>
-          <p>Caloria: {calorias}kcal</p>
+          <p>Calorias: {calorias}kcal</p>
+          <p>Carboidratos: {carboidratos}</p>
           <p>Proteínas: {proteinas}</p>
+          <p>Sódio: {sodio}</p>
+          <p>Gordura: {gordura}</p>
+          <p>Fibra: {fibra}</p>
           <div className="contador">
-          <input type="number"  id='contador'/>
+        
         </div>
         </div>
 

@@ -41,6 +41,10 @@ const Card = ({
             descricao={descrisao}
             calorias={kcal}
             proteinas={kcal}
+            carboidratos={carboidrato}
+            gordura={gordura}
+            sodio={sodio}
+            fibra={fibra}
             id='butao-fecha-modal'
             onClick={adicionarEvento}
             

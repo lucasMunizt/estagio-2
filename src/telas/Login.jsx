@@ -15,7 +15,7 @@ const Login = () => {
   } 
 
   const handleLogin = async (e) => {
-  
+    e.preventDefault()
     const url = 'http://localhost:3000/user/login'; // Altere para sua API
     const body = { mail: email, password: senha };
   
