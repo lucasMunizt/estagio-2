@@ -9,12 +9,14 @@ const Login = () => {
   const [senha, setSenha] = useState('');
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  
   const handleLogin = async (e) => {
     e.preventDefault(); // Previne o comportamento padrão do formulário
-
+  
     const url = 'http://localhost:3000/user/login'; // Altere para sua API
-    const body = {mail: email,password: senha };
-    console.log("email:"+ email)
+    const body = { mail: email, password: senha };
+  
+    console.log("email:", email);
     try {
       const response = await fetch(url, {
         method: 'POST',
@@ -23,21 +25,25 @@ const Login = () => {
         },
         body: JSON.stringify(body),
       });
-
-      if (response.ok) {
-        navigate('/home')
+  
+      // Verifica se a resposta foi bem-sucedida antes de processar o JSON
+      if (!response.ok) {
+        const errorMessage = await response.text(); // Obtém a mensagem de erro como texto
+        throw new Error(`Erro na requisição: ${errorMessage || response.statusText}`);
       }
-      localStorage.setItem('user', JSON.stringify(result));
-
-      const result = await response.json();
+  
+      const result = await response.json(); // Obtém o JSON somente se a resposta for bem-sucedida
       console.log('Resposta do servidor:', result);
-
-      // Lógica adicional, como redirecionamento ou armazenamento de tokens
+  
+      // Salva no localStorage e redireciona
+      localStorage.setItem('user', JSON.stringify(result));
+      navigate('/home');
     } catch (error) {
-      setError(error.message);
+      setError(error.message); // Atualiza o estado com a mensagem de erro
       console.error('Erro ao enviar os dados:', error);
     }
   };
+  
 
  
   return (
