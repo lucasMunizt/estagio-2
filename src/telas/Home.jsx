@@ -15,18 +15,61 @@ import ArrayFrutas from "../data/Frutas";
 import Modal from "../components/Modal/Modal";
 import Header from "../components/Header/Header";
 const Home = () => {
-  const [cards, setCards] = useState(3);
+  const [cards, setCards] = useState(3); // 3
   const [cardsEspassamento, setcardsEspassament] = useState(10);
   const [busca,setBusca] = useState('');
   const [sugestoes,setSugestoes] = useState([])
-  const [isModalOpen, setIsModalOpen] = useState(false); // Estado do modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [frutaSelecionada, setFrutaSelecionada] = useState(null);
   const openModal = () => setIsModalOpen(true);
   const closeModal = (e) => setIsModalOpen(false)
-   
+  const [data, setData] = useState([]);
+  const [error, setError] = useState(null);
+  const [filteredData, setFilteredData] = useState([])
+  const [filteredDataTest, setFilteredDataTest] = useState([])
+  let buscaTest = 'apple';
+  //const url = 'http://localhost:3000/food'
+
+  const buildUrl = (query) => {
   
-  
-  
+   // let params = new URLSearchParams({ number:1}); 
+    if (!query) query ='';
+    return `${baseUrl}`;
+  };
+
+
+  useEffect(()=>{
+    const fetchData = async () =>{
+      const url = new URL('http://localhost:3000/food');
+      const urlTest = new URL('http://localhost:3000/food');
+      try{
+        const params = { number: 1, query: busca, sort:'calories', sortDirection:'asc' }; // Define os parâmetros
+        const paramsTest = { number: 1, query: busca, sort:'fiber', sortDirection:'asc' }; // Define os parâmetros
+        Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+        Object.keys(paramsTest).forEach(key => urlTest.searchParams.append(key, paramsTest[key]))
+        const res = await fetch(url);
+        const res2 = await fetch(urlTest);
+        if(!res.ok){
+          throw new Error("Erro na busca");
+        }
+        const result = await res.json();
+        const result2 = await res2.json();
+        //console.log("Dados retornados da API:", result);
+        //console.log(JSON.stringify(result2))
+        setData(result)
+        //console.log(data)
+        setFilteredData(result)
+        setFilteredDataTest(result2)
+       
+      }
+      catch(error){
+        setError(error.message);
+      }
+    };
+    fetchData();
+  },[busca])
+
+
   useEffect(() => {
     function handleResize() {
       if (window.innerWidth < 820 && window.innerWidth > 560) {
@@ -47,22 +90,36 @@ const Home = () => {
     };
   }, []);
 
-    const handleBuscar = (e) =>{
+   /* const handleBuscar = (e,valorBusca) =>{
       e.preventDefault();
       const texto = e.target.value; 
       setBusca(texto);
       if(texto.length > 0){
-        const filtrados = ArrayFrutas.filter((fruta)=>
-          fruta.nome.toLowerCase().startsWith(texto.toLowerCase())
+        const filtrados = data.filter((fruta)=>
+          fruta.name.toLowerCase().startsWith(texto.toLowerCase())
         );
         setSugestoes(filtrados.slice(0,5));
       }else{
         setSugestoes([]);
       }
+    };*/
+    const handleBuscar = (e) => {
+      e.preventDefault();
+      const texto = e.target.value;
+      setBusca(texto);
+      if (texto.trim() === '') {
+        setFilteredData(data); // Mostra todos os itens se busca estiver vazia
+      }else{
+        const filtrados = data.filter((fruta)=>
+          fruta.name.toLowerCase().startsWith(texto.toLowerCase())
+        );
+        setSugestoes(filtrados.slice(0,5));
+        setFilteredData(filtrados.slice(0,5)); 
+      }
     };
-
+    
     const handleSelect = (fruta) => {
-      setBusca(fruta.nome);
+      setBusca(fruta.name);
       setFrutaSelecionada(fruta)
       openModal();
       setSugestoes([]);
@@ -75,12 +132,6 @@ const Home = () => {
 
   return (
     <>
-      {/* <header>
-        <h1>nutricard</h1>
-        <div className="modal-perfil-container">
-          
-        </div>
-      </header> */}
       <Header/>
       <div className="div-pai">
       <div className="descrisao-home">
@@ -100,11 +151,11 @@ const Home = () => {
         value={busca}
       
       />
-       {sugestoes.length > 0 &&(
+       {busca.trim() && filteredData.length > 0 &&(
           <ul id="lista-busca">
-            {sugestoes.map((fruta)=>(
+            {filteredData.map((fruta)=>(
               <li
-              key={fruta.id}
+              key={fruta.food_id}
               onClick={() => handleSelect(fruta)}
               style={{
                 padding: '20px',
@@ -112,14 +163,14 @@ const Home = () => {
                 borderBottom: '1px solid #eee',
                 
               }}>
-                {fruta.nome}
+                {fruta.name}
               </li>
             ))}
           </ul>
         )}
       </div>
      
-      <h4 className="nome-frut">Frutas</h4>
+      <h4 className="nome-frut">Calorias</h4>
       <div className="container-home">
         <Swiper
           slidesPerView={cards}
@@ -131,22 +182,27 @@ const Home = () => {
           modules={[FreeMode, Pagination]}
           className="mySwiper"
         >
-          {GetRamdomFrutas(ArrayFrutas).map((frutavetor, index) => (
-            <SwiperSlide key={frutavetor.id}>
+            { 
+          filteredData.map((item) => (
+            <SwiperSlide key={item.food_id}>
               <Card
-              img={fruta}
-              descrisao={frutavetor.sobre}
-              kcal={frutavetor.kcal}
-              nome={frutavetor.nome}              
-              />
-              <br />
-              <br />
-              <br />
+                nome={item.name}
+                img={`https://img.spoonacular.com/ingredients_500x500/${item.image}`}
+                kcal={item.calories}
+                proteina={item.protein}
+                carboidrato={item.carbohydrates}
+                sodio={item.sodium}
+                gordura={item.fat}
+                fibra={item.fiber}
+                />
+                <br />
+                <br />
             </SwiperSlide>
-          ))}
+          ))
+      }
         </Swiper>
       </div>
-      <h4 className="nome-frut">Verduras</h4>
+      <h4 className="nome-frut">Proteínas</h4>
       <div className="container-card2">
         <Swiper
           slidesPerView={cards}
@@ -158,34 +214,36 @@ const Home = () => {
           modules={[FreeMode, Pagination]}
           className="mySwiper"
         >
-          <SwiperSlide>
-            <Card img={fruta2} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card img={fruta} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card img={fruta} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card img={fruta} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card img={fruta2} />
-          </SwiperSlide>
+         {/* { 
+          filteredDataTest.map((item) => (
+            <SwiperSlide key={item.food_id}>
+              <Card
+                 nome={item.name}
+                 img={`https://img.spoonacular.com/ingredients_500x500/${item.image}`}
+                 kcal={item.calories}
+                 proteina={item.protein}
+                 carboidrato={item.carbohydrates}
+                 sodio={item.sodium}
+                 gordura={item.fat}
+                 fibra={item.fiber}
+                />
+                <br />
+                <br />
+            </SwiperSlide>
+          ))
+      } */}
         </Swiper>
       </div>
 
       {isModalOpen && frutaSelecionada &&(
         <Modal
         
-        nome={frutaSelecionada.nome}
-        descricao={frutaSelecionada.sobre}
-        calorias={frutaSelecionada.kcal}
+        nome={frutaSelecionada.name}
         isOpen={isModalOpen}
         onClose={closeModal}
-        img={fruta}
+        img={`https://img.spoonacular.com/ingredients_500x500/${frutaSelecionada.image}`}
         id = 'butao-fechar'
+        
         modalButton = {true}
         opamen='test-butao-fechar'
         />

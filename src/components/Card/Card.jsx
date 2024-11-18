@@ -4,7 +4,20 @@ import './Card.css';
 import Modal from '../Modal/Modal';
 import moment from 'moment';
 import EventosPadrao from '../Calendario/EventosPadrao';
-const Card = ({ id, img,descrisao , kcal, nome, onSalvarAlimentos }) => {
+const Card = ({ 
+  id, 
+  img,
+  descrisao , 
+  kcal, 
+  nome, 
+  onSalvarAlimentos,
+  carboidrato,
+  proteina,
+  sodio,
+  gordura,
+  fibra
+
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false); // Estado do modal
   const [eventos, setEventos] = useState(EventosPadrao);
   const openModal = () => setIsModalOpen(true);
@@ -56,8 +69,13 @@ const Card = ({ id, img,descrisao , kcal, nome, onSalvarAlimentos }) => {
               <h4 className="h5-nutricao">Valores Nutricionais:</h4>
               <div className="informacoes">
                 <span id="calorias">Calorias {kcal}kcal</span>
-                <span id="proteina">Proteína {kcal}g</span>
-                <span id="massa">Massa {kcal}g</span>
+                <span id="massa">Carboidrato {carboidrato}g</span>
+                <span id="proteina">Proteína {proteina}g</span>
+                
+                <span id="calorias">Sódio {sodio}kcal</span>
+                <span id="proteina">Gordura {gordura}g</span>
+                <span id="massa">Fibra {fibra}g</span>
+                
               </div>
               
             </div>

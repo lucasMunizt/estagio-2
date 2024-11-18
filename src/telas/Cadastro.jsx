@@ -15,10 +15,11 @@ const Cadastro = () => {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [gender, SetGender] = useState();
   const ValoresCadastro = []
-  const url = 'http://localhost:3000/Cadastro' 
-  const navigate = useNavigate();
 
+  const url = 'http://localhost:3000/user/create' 
+  const navigate = useNavigate();
 
   const handleInputChange = (e) =>{
       const {id,value} = e.target;
@@ -45,6 +46,11 @@ const Cadastro = () => {
       else if(id === 'confirm-senha'){
         setPassword(value);
       }
+
+      else if(id === 'id-genero'){
+          SetGender(value);
+      }
+
   };
 
   const CalcularImc = () =>{
@@ -54,34 +60,54 @@ const Cadastro = () => {
     }
   } 
 
+  async function createUser(user, url) {
+    try {
+      const res = await fetch(url,{
+        method:"POST",
+        headers:{
+          "content-type": "application/json"
+        },
+        body: JSON.stringify(user)
+      })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error('Erro:', error));
+      return res;
+    } catch (error) {
+        console.error("Erro ao criar usuário:", error);
+    }
+  }
+
+
   const handleSave =  async (e) =>{
     CalcularImc()
     e.preventDefault()
-      ValoresCadastro.push({
-      "altura": height,
-      "peso": weight,
-      "idade": age,
-      "name": name,
-      "senha": password,
-      "email": email,
-      "imc": calculoImc
-    })
-    const res = await fetch(url,{
-      method:"POST",
-      headers:{
-        "content-type": "application/json"
-      },
-      body: JSON.stringify(ValoresCadastro)
-    })
-
+    console.log("peso "+ weight)
+    const user = {
+      "user": {
+          "height": height,
+          "weight": weight,
+          "age": age,
+          "name": name,
+          "password": password,
+          "mail": email,
+          "bmi": calculoImc,
+          "gender": gender
+      }
+    }
+    const res = createUser(user, url);
+    
     if(res.ok){
       console.log("Cadastro realizado com sucesso")
-      //navigate('/home')
+      navigate('/login')
+    }else{
+      console.log("Erro ao realizar cadastro")
     }
 
   };
 
   return (
+    
     <Logins
       titulo="NutriCard"
       butaoId1="idCadastoLogin"
@@ -117,7 +143,11 @@ const Cadastro = () => {
       onInputChangeSenha = {handleInputChange}
       onInputChangeEmail = {handleInputChange}
       onSave={handleSave}
-    />
+      gernero = {true}
+      onInputChangeGenero = {handleInputChange}
+      idGenero='id-genero'
+      />
+     
   )
 }
 

@@ -59,12 +59,18 @@ const SalvarAlimentos = () => {
         <img src={img} alt={nome} className="modal-img" />
         <h2 style={{fontWeight:'200',fontSize:'20px', marginTop:'20px'}}>{nome}</h2>
         <p className="modal-descricao">{descricao}</p>
-
+      
         <div className="modal-valores">
+          
+          <div className="test"></div>
           <h4 style={{fontSize:'17px',fontWeight:'500'}}>Valores nutricionais:</h4>
           <p>Caloria: {calorias}kcal</p>
           <p>Proteínas: {proteinas}</p>
+          <div className="contador">
+          <input type="number"  id='contador'/>
         </div>
+        </div>
+
         {modalButton &&(
           <Butao 
           id='butao-modal'

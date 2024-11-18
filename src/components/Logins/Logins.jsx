@@ -38,7 +38,10 @@ const Logins = ({
   onInputChangeIdade,
   onInputChangePeso,
   onInputChangeAltura,
-  onInputChangeEmail
+  onInputChangeEmail,
+  gernero = false,
+  onInputChangeGenero,
+  idGenero
 }) => {
   const navigate = useNavigate();
 
@@ -85,6 +88,10 @@ const Logins = ({
                     idImg={idImgPersona}
                     onChange={onInputChangeEmail} // Corrige aqui
                   />
+
+                )}
+                {gernero &&(
+                     <input type="text" onChange={onInputChangeGenero}id={idGenero} />
                 )}
 
                 {/* Renderiza os campos de input para idade, peso e altura */}
