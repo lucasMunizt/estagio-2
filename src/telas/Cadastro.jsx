@@ -60,6 +60,8 @@ const Cadastro = () => {
     }
   } 
 
+
+
   async function createUser(user, url) {
     try {
       const res = await fetch(url,{
@@ -80,6 +82,9 @@ const Cadastro = () => {
     }
   }
 
+  const handleLogin = () =>{
+    navigate('/login')
+  } 
 
   const handleSave =  async (e) =>{
     CalcularImc()
@@ -148,6 +153,7 @@ const Cadastro = () => {
       gernero = {true}
       onInputChangeGenero = {handleInputChange}
       idGenero='id-genero'
+      onClick={handleLogin}
       />
      
   )

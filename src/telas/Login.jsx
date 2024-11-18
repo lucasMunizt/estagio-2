@@ -10,8 +10,11 @@ const Login = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   
+  const handleCadastro = () =>{
+    navigate('/cadastro')
+  } 
+
   const handleLogin = async (e) => {
-    e.preventDefault(); // Previne o comportamento padrão do formulário
   
     const url = 'http://localhost:3000/user/login'; // Altere para sua API
     const body = { mail: email, password: senha };
@@ -74,6 +77,7 @@ const Login = () => {
           onInputChangeNome={(e) => setEmail(e.target.value)}
           onInputChangeSenha ={(e) => setSenha(e.target.value)}
           onSave={handleLogin}
+          onClick={handleCadastro}
         />
       
       

@@ -41,7 +41,9 @@ const Logins = ({
   onInputChangeEmail,
   gernero = false,
   onInputChangeGenero,
-  idGenero
+  idGenero,
+  onClick
+
 }) => {
   const navigate = useNavigate();
 
@@ -53,7 +55,7 @@ const Logins = ({
         >
           <div className="img">
             <h1 id="valor-titulo">{titulo}</h1>
-            <Butao id={butaoId1} valor={butaoValor1} />
+            <Butao id={butaoId1} valor={butaoValor1} onClick={onClick}/>
           </div>
           <div className="card">
             <div className="card-body">
