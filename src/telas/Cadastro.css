@@ -1,13 +1,12 @@
 #idCadastroNome {
-    margin-top: 2px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border: 1px solid rgb(209, 209, 209);
     border-radius: 15px;
     width: 300px;
 }
 
 #idCadastroEmail {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border: 1px solid rgb(209, 209, 209);
     border-radius: 15px;
     width: 300px;
@@ -17,7 +16,10 @@
     border: 1px solid rgb(209, 209, 209);
     border-radius: 15px;
     width: 300px;
+    margin-bottom: 10px;
 }
+
+
 
 #butao-cadastrar {
     border-radius: 12px;

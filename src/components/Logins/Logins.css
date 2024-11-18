@@ -76,7 +76,7 @@ input[type=number] {
 }
 
 .card-body span{
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     font-style: normal;
@@ -85,7 +85,7 @@ input[type=number] {
 }
 
 form{
-    margin-top: 20px;
+    margin-top: 0px;
 }
 
 .invertido {
@@ -97,9 +97,28 @@ form{
     display: flex;
     align-items: center;
     justify-content: space-around;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-right: 0px;
     gap: 10px;
+   
+}
+
+.dropdown{
+    margin-right: 0px;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+.dropdown-menu{
+    width: 300px;
+    text-align: center;
+}
+
+#botao-list-genero{
+    width: 300px;
+    padding: 6px;
+    background-color: #45C8AE;
+    border: none;
 }
 
 #idade,#peso,#altura {

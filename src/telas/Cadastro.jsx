@@ -69,6 +69,8 @@ const Cadastro = () => {
         },
         body: JSON.stringify(user)
       })
+      if(res.ok) return navigate('/login');
+      else return alert('Erro ao criar usuário prenchar todos os campos')
       .then(response => response.json())
       .then(data => console.log(data))
       .catch(error => console.error('Erro:', error));
@@ -82,7 +84,7 @@ const Cadastro = () => {
   const handleSave =  async (e) =>{
     CalcularImc()
     e.preventDefault()
-    console.log("peso "+ weight)
+    console.log("gender "+ gender)
     const user = {
       "user": {
           "height": height,

@@ -90,9 +90,7 @@ const Logins = ({
                   />
 
                 )}
-                {gernero &&(
-                     <input type="text" onChange={onInputChangeGenero}id={idGenero} />
-                )}
+               
 
                 {/* Renderiza os campos de input para idade, peso e altura */}
                 {isDados && (
@@ -116,6 +114,20 @@ const Logins = ({
                       onChange={onInputChangeAltura} // Corrige aqui
                     />
                   </div>
+                )}
+                 {gernero &&(
+                     //<input type="text" onChange={onInputChangeGenero}id={idGenero} placeholder="Coloque seu gênero: MAN OU SHER" />
+                     <div className="dropdown">
+                     <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="botao-list-genero">
+                       Gênero
+                     </button>
+                     <ul className="dropdown-menu">
+                       <li><button className="dropdown-item" type="button" id={idGenero} onClick={()=> onInputChangeGenero({ target: {id: idGenero, value: 'MAN'}})}>MAN</button></li>
+                       <li><button className="dropdown-item" type="button" id={idGenero}  onClick={()=> onInputChangeGenero({ target: {id: idGenero, value: 'SHER'}})}>SHER</button></li>
+               
+                     </ul>
+                   </div>
+                
                 )}
 
                 <Butao valor={butaoValor2} id={butaoId2} onClick={onSave} />
