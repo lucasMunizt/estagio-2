@@ -43,8 +43,8 @@ const Home = () => {
       const url = new URL('http://localhost:3000/food');
       const urlTest = new URL('http://localhost:3000/food');
       try{
-        const params = { number: 1, query: busca, sort:'calories', sortDirection:'asc' }; // Define os parâmetros
-        const paramsTest = { number: 1, query: busca, sort:'fiber', sortDirection:'asc' }; // Define os parâmetros
+        const params = { number: 3, query: busca, sort:'calories', sortDirection:'asc' }; // Define os parâmetros
+        const paramsTest = { number: 1, query: busca, sort:'fiber', sortDirection:'desc' }; // Define os parâmetros
         Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
         Object.keys(paramsTest).forEach(key => urlTest.searchParams.append(key, paramsTest[key]))
         const res = await fetch(url);
@@ -171,6 +171,7 @@ const Home = () => {
       </div>
      
       <h4 className="nome-frut">Calorias</h4>
+      <p id="card-informacao">Clique no card para mais informações</p>
       <div className="container-home">
         <Swiper
           slidesPerView={cards}
@@ -194,6 +195,7 @@ const Home = () => {
                 sodio={item.sodium}
                 gordura={item.fat}
                 fibra={item.fiber}
+                unidadeDeMedida={item.unit_of_measure}
                 />
                 <br />
                 <br />
@@ -202,8 +204,12 @@ const Home = () => {
       }
         </Swiper>
       </div>
+      <div className="descrisao-card-click">
       <h4 className="nome-frut">Proteínas</h4>
-      <div className="container-card2">
+      <p id="card-informacao">Clique no card para mais informações</p>
+     
+      </div>
+     <div className="container-card2">
         <Swiper
           slidesPerView={cards}
           spaceBetween={cardsEspassamento}
@@ -237,6 +243,7 @@ const Home = () => {
 
       {isModalOpen && filteredData.map((index)=>(
         <Modal key={index.food_id}
+        
         nome={index.name}
         isOpen={isModalOpen}
         onClose={closeModal}
@@ -248,11 +255,11 @@ const Home = () => {
         sodio={index.sodium}
         gordura={index.fat}
         fibra={index.fiber}
-        id='butao-fechar'
+        id='butao-fechar-home'
        
         />
       ))}
-
+      <footer></footer>
     </>
   );
 };

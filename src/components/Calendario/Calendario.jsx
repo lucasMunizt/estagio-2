@@ -136,10 +136,13 @@ const Calendario = () => {
               <Modal
               isOpen={true}
               onClose={handleEventClose}
-              nome={eventoSelecionados.title.value}
-              descricao={eventoSelecionados.desc}
+              nome={eventoSelecionados.title}
               calorias={eventoSelecionados.calorias}
+              carboidratos={eventoSelecionados.carboidratos}
               proteinas={eventoSelecionados.proteinas}
+              sodio={eventoSelecionados.sodio}
+              gordura={eventoSelecionados.gordura}
+              fibra={eventoSelecionados.fibra}  
               img={eventoSelecionados.img}
               id='butao-fechar-calendario'
               edicaoModal = {true}

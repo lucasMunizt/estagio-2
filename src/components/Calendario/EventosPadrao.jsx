@@ -1,4 +1,5 @@
-const EventosPadrao = [
+
+   const EventosPadrao = [
     {
         id:1,
         title:'ativiade 1',
@@ -35,6 +36,7 @@ const EventosPadrao = [
     calorias:'120',
     imagem: '' 
 },
+
   
   
 ];

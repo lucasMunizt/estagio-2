@@ -124,8 +124,20 @@ const Logins = ({
                        Gênero
                      </button>
                      <ul className="dropdown-menu">
-                       <li><button className="dropdown-item" type="button" id={idGenero} onClick={()=> onInputChangeGenero({ target: {id: idGenero, value: 'MAN'}})}>MAN</button></li>
-                       <li><button className="dropdown-item" type="button" id={idGenero}  onClick={()=> onInputChangeGenero({ target: {id: idGenero, value: 'SHER'}})}>SHER</button></li>
+                       <li>
+                        <button 
+                          className="dropdown-item" 
+                          type="button" 
+                          id={idGenero} 
+                          onClick={()=> onInputChangeGenero({ target: {id: idGenero, value: 'MAN'}})}>
+                            Masculino
+                        </button>
+                        </li>
+                       <li><button 
+                       className="dropdown-item" 
+                       type="button" 
+                       id={idGenero}  
+                       onClick={()=> onInputChangeGenero({ target: {id: idGenero, value: 'SHER'}})}>Feminino</button></li>
                
                      </ul>
                    </div>

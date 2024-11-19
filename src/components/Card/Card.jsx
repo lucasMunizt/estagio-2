@@ -15,8 +15,8 @@ const Card = ({
   proteina,
   sodio,
   gordura,
-  fibra
-
+  fibra,
+  unidadeDeMedida
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false); // Estado do modal
   const [eventos, setEventos] = useState(EventosPadrao);
@@ -28,11 +28,12 @@ const Card = ({
   };
   const adicionarEvento = (novoEvento) => {
     setEventos((prevEventos) => [...prevEventos, novoEvento]);
+    setEventos(novoEvento)
     console.log("adicionarEvento é função:", typeof adicionarEvento === 'function');
   };
-
   return (
     <>
+          
           <Modal
             isOpen={isModalOpen}
             onClose={closeModal}
@@ -75,11 +76,6 @@ const Card = ({
                 <span id="calorias">Calorias {kcal}kcal</span>
                 <span id="massa">Carboidrato {carboidrato}g</span>
                 <span id="proteina">Proteína {proteina}g</span>
-                
-                <span id="calorias">Sódio {sodio}kcal</span>
-                <span id="proteina">Gordura {gordura}g</span>
-                <span id="massa">Fibra {fibra}g</span>
-                
               </div>
               
             </div>

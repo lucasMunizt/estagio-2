@@ -3,6 +3,7 @@ import React from 'react';
 import './Modal.css';
 import Butao from '../Botao/Butao'
 import EventosPadrao from '../Calendario/EventosPadrao';
+
 import moment from 'moment';
 import 'moment/locale/pt-br';
 import { useState } from 'react';
@@ -24,25 +25,30 @@ const Modal = ({
   gordura,
   fibra
 }) => {
- 
 
+  
   if (!isOpen) return null;
 const SalvarAlimentos = () => {
+  
   const agora = moment();
     EventosPadrao.push({
       id: EventosPadrao.length + 1,
       title: nome,
+      img: img,
       start: agora.toDate(),
       end:  agora.add(1, 'hour').toDate(),
-      desc: descricao,
       color:'blue',
       tipo:'atividade',
       calorias:calorias,
-      imagem: img
+      carboidratos:carboidratos,
+      proteinas:proteinas,
+      sodio:sodio,
+      gordura:gordura,
+      fibra:fibra,
     })
-  
+    
   alert("funcionou")
-  console.log(EventosPadrao)
+  console.log()
   onClose();
 };
 
@@ -64,16 +70,14 @@ const SalvarAlimentos = () => {
         <h2 style={{fontWeight:'200',fontSize:'20px', marginTop:'20px'}}>{nome}</h2>
         <p className="modal-descricao">{descricao}</p>
       
+          <h4 style={{fontSize:'17px',fontWeight:'500',}}>Valores nutricionais:</h4>
         <div className="modal-valores">
-          
-          <div className="test"></div>
-          <h4 style={{fontSize:'17px',fontWeight:'500'}}>Valores nutricionais:</h4>
-          <p>Calorias: {calorias}kcal</p>
-          <p>Carboidratos: {carboidratos}</p>
-          <p>Proteínas: {proteinas}</p>
-          <p>Sódio: {sodio}</p>
-          <p>Gordura: {gordura}</p>
-          <p>Fibra: {fibra}</p>
+          <p>Calorias: {calorias}g</p>
+          <p>Carboidratos: {carboidratos}g</p>
+          <p>Proteínas: {proteinas}g</p>
+          <p>Sódio: {sodio}g</p>
+          <p>Gordura: {gordura}g</p>
+          <p>Fibra: {fibra}g</p>
           <div className="contador">
         
         </div>
