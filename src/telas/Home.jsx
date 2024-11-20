@@ -43,8 +43,8 @@ const Home = () => {
       const url = new URL('http://localhost:3000/food');
       const urlTest = new URL('http://localhost:3000/food');
       try{
-        const params = { number: 3, query: busca, sort:'calories', sortDirection:'asc' }; // Define os parâmetros
-        const paramsTest = { number: 1, query: busca, sort:'fiber', sortDirection:'desc' }; // Define os parâmetros
+        const params = { number: 2, query: busca, sort:'calories', sortDirection:'asc' }; // Define os parâmetros
+        const paramsTest = { number: 0, query: busca, sort:'fiber', sortDirection:'desc' }; // Define os parâmetros
         Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
         Object.keys(paramsTest).forEach(key => urlTest.searchParams.append(key, paramsTest[key]))
         const res = await fetch(url);
@@ -184,7 +184,7 @@ const Home = () => {
           className="mySwiper"
         >
             { 
-          filteredData.map((item) => (
+          data.map((item) => (
             <SwiperSlide key={item.food_id}>
               <Card
                 nome={item.name}

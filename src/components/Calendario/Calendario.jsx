@@ -38,6 +38,7 @@ const messages = {
     Thu: 'Quinta-feira',
     Fri: 'Sexta-feira',
     Sat: 'Sábado',
+    Wednesday: 'Quarta-feira',
     noEventsInRange: 'Nenhum evento neste período.',
     showMore: total => `+ Ver mais (${total})`
 };
@@ -188,12 +189,13 @@ const CustomToolbar = ({ label, onView, onNavigate, views }) => {
                     </ul>
                 </div>
                 <div className="toolbar-navegation" style={{ marginLeft: '0px' }}>
-                    <button className='btn btn-sm mr-2 text-secondary' onClick={() => onNavigate('PREV')} style={{ marginLeft: '15px' }}>
+                    <button className='btn btn-sm mr-2 text-secondary' onClick={() => onNavigate('PREV')} style={{ marginLeft: '15px',marginTop:'18px' }}>
                         <i className="bi bi-caret-left"></i>
                     </button>
                     <button className='btn btn-secondary btn-1s mr-2 border-0' 
-                    onClick={() => onNavigate('TODAY')} style={{width:'100px'}}>Hoje</button>
+                    onClick={() => onNavigate('TODAY')} style={{width:'100px',height:'40px',marginTop:'18px'}}>Hoje</button>
                     <button className='btn btn-sm mr-2 text-secondary'
+                     style={{marginTop:'18px'}}
                      onClick={() => onNavigate('NEXT')}>
                         <i className="bi bi-caret-right"></i>
                     </button>

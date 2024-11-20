@@ -22,7 +22,7 @@ const Cadastro = () => {
   const navigate = useNavigate();
 
   const handleInputChange = (e) =>{
-      const {id,value} = e.target;
+      const {id,value} = e.target; 
       if(id === 'altura'){
         setHeight(value)
       }

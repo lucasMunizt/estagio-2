@@ -3,10 +3,10 @@ import React from 'react';
 import './Modal.css';
 import Butao from '../Botao/Butao'
 import EventosPadrao from '../Calendario/EventosPadrao';
-
 import moment from 'moment';
 import 'moment/locale/pt-br';
 import { useState } from 'react';
+import AdicionarAlimento from './AdicionarAlimento';
 const Modal = ({ 
   isOpen, 
   onClose, 
@@ -25,10 +25,12 @@ const Modal = ({
   gordura,
   fibra
 }) => {
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = (e) => setIsModalOpen(false)
   
   if (!isOpen) return null;
-const SalvarAlimentos = () => {
+/*const SalvarAlimentos = () => {
   
   const agora = moment();
     EventosPadrao.push({
@@ -50,26 +52,36 @@ const SalvarAlimentos = () => {
   alert("funcionou")
   console.log()
   onClose();
-};
+};*/
 
   const DeletarAlimento = () =>{
-    console.log("ola  ")
+    console.log("opa")
   }
-
 
   return (
     <div className="modal-overlay">
-      <div className="butao-fecha">
-          <div className={opamen}>
-            <button id={id} onClick={onClose} style={{zIndex:'11000'}}>X</button>
-
+   
+      <div className="butao-fecha" id={id}>
+          <div className={opamen}>   
+              <i 
+              className="bi bi-x-square-fill"
+              id="botao-fechar-modal"
+              itemID={id}
+              onClick={onClose}
+              ></i>
           </div>
       </div>
       <div className="modal-container">
-        <img src={img} alt={nome} className="modal-img" />
-        <h2 style={{fontWeight:'200',fontSize:'20px', marginTop:'20px'}}>{nome}</h2>
-        <p className="modal-descricao">{descricao}</p>
-      
+        <img src={img} alt={nome} className="modal-img" />    
+        <h2 
+        id='nome-fruta'
+        style={{
+          fontWeight:'200',
+          fontSize:'20px',
+          marginTop:'20px',
+          marginBottom:'20px'}}>
+          {nome}
+        </h2>
           <h4 style={{fontSize:'17px',fontWeight:'500',}}>Valores nutricionais:</h4>
         <div className="modal-valores">
           <p>Calorias: {calorias}g</p>
@@ -78,15 +90,12 @@ const SalvarAlimentos = () => {
           <p>Sódio: {sodio}g</p>
           <p>Gordura: {gordura}g</p>
           <p>Fibra: {fibra}g</p>
-          <div className="contador">
-        
-        </div>
         </div>
 
         {modalButton &&(
           <Butao 
           id='butao-modal'
-          onClick={SalvarAlimentos} 
+          onClick={openModal} 
           valor='adicionar Alimento'
           />
 
@@ -98,6 +107,22 @@ const SalvarAlimentos = () => {
          </div>
         )}
       </div>
+      {isModalOpen &&(
+        <AdicionarAlimento
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        nome={nome}
+        calorias={calorias}
+        carboidratos={carboidratos}
+        proteinas={proteinas}
+        sodio={sodio}
+        gordura={gordura}
+        fibra={fibra}
+        img={img}
+        />
+      )}  
+
+
     </div>
   );
 };

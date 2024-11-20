@@ -22,8 +22,6 @@ const Header = () => {
     const userData = localStorage.getItem('user');
     if (userData) {
       const parseData = JSON.parse(userData)
-      //setDadosUsuario(JSON.parse(userData)); // Converte o JSON para objeto e armazena no estado
-      console.log('dados carregados do: ' + JSON.stringify(parseData, null, 2));
       setDadosUsuario(parseData);
 
     }else{
@@ -60,31 +58,32 @@ const Header = () => {
           <div key={index.id || idx} className="client-info">
           <div className="client-name">
             <a href="/home" id="icone-home"><i className="bi bi-house"></i></a>
+            <i class="bi bi-pencil"></i>
             <h2 id="valor-nome">{index.name || 'Usuário'}</h2>
           </div>
           <div className="info-section">
             <div className="informacoes-valores">
               <div className="info-item">
                 <p>Calorias consumidas</p>
-                <span className="info-value">{index.calories_consumed || 'N/A'}</span>
+                <span className="info-value">{index.calories_consumed || 0}</span>
               </div>
               <div className="info-item">
                 <p>Calorias a consumir</p>
-                <span className="info-value">{index.calorie_goal - (index.calories_consumed || 0) || 'N/A'}</span>
+                <span className="info-value">{index.calorie_goal - (index.calories_consumed || 0)|| 0}</span>
               </div>
             </div>
             <div className="valores-pessoais">
               <div className="info-item">
                 <p>Altura</p>
-                <span className="info-value">{index.height || 'N/A'} m</span>
+                <span className="info-value">{index.height || 0} m</span>
               </div>
               <div className="info-item">
                 <p>Peso</p>
-                <span className="info-value">{index.weight || 'N/A'} kg</span>
+                <span className="info-value">{index.weight || 0} kg</span>
               </div>
               <div className="info-item">
                 <p>IMC</p>
-                <span className="info-value">{index.bmi.toFixed(2) || 'N/A'}</span>
+                <span className="info-value">{index.bmi.toFixed(2) || 0}</span>
               </div>
             </div>
           </div>

@@ -49,6 +49,10 @@
   }
 }
 
+#nome-fruta{
+  margin: 0;
+}
+
 .modal-descricao {
   padding: 0 16px;
   font-size: 16px;
@@ -80,6 +84,9 @@
   font-size: 15px;
   color: #333; 
 }
+
+
+
 
 #butao-modal {
   display: block;
@@ -119,7 +126,7 @@
 
 .butao-fecha{
   position: absolute;
-  left: 75%;
+  left: 84%;
   transform: translateX(-50%);
   top: 9%;
   z-index: 111000;
@@ -151,17 +158,22 @@
   position: absolute;
 }
 
-#butao-fecha-modal{
-  width: 5px;
-  height:5px;
-  color: black;
+#botao-fechar-modal{
+  width: 15px;
+  height:15px;
   align-items: center;
   display: flex;
   position: fixed;
   justify-content: center;
-  background-color: #2bb580ab;
+  background-color: rgba(192, 192, 192, 0);
   border-radius: 5px;
+  background-color: none;
+  left: 1rem;
+  cursor: pointer;
+  font-size: 24px;
 }
+
+
 
   @media(max-width:1200px){
     .butao-fecha{
@@ -202,7 +214,7 @@
 
   @media(max-width:580px){
     .butao-fecha{
-      left: 75%;
+      left: 80%;
     }
 
     #butao-fechar{

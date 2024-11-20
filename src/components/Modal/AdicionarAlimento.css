@@ -1,0 +1,78 @@
+.modal-overlay-2{
+    top: 0;
+    left: 0;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+    margin-left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 555555;
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+    margin-left: 0;
+    margin-left: 2px;
+}
+
+.modal-container-2{
+    padding: 50px;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(250, 247, 247);
+    position: fixed;
+    height: 500px;
+    border: none;
+    border-radius: 5px;
+}
+
+.botao-fecha-2{
+    position: absolute;
+    left: 84%;
+    transform: translateX(-50%);
+    top: 9%;
+    z-index: 111000;
+}
+
+
+.datas{
+    display: flex;
+    width: 40px;
+    margin-top: 20px;
+    gap: 5px;
+    border: none;
+}
+
+#start,#end{
+    width: 200px;
+    padding: 0;
+    text-align: center;
+    
+}
+
+#salvar-alimentos{
+    margin-top: 29px;
+}
+
+.dropdown-menu-2{
+    display: flex;
+    gap: 10px;
+}
+
+#botao-list-refeicoes,#botao-list-atividades{
+    width: 142px;
+    border: none;
+    background-color: #45C8AE;
+    margin-top: 20px;
+}
+
+#salvar-alimentos{
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 300px;
+}

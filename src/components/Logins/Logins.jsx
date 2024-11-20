@@ -129,7 +129,8 @@ const Logins = ({
                           className="dropdown-item" 
                           type="button" 
                           id={idGenero} 
-                          onClick={()=> onInputChangeGenero({ target: {id: idGenero, value: 'MAN'}})}>
+                          onClick={
+                            ()=> onInputChangeGenero({ target: {id: idGenero, value: 'MAN'}})}>
                             Masculino
                         </button>
                         </li>
