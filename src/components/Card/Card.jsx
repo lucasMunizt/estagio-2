@@ -48,7 +48,7 @@ const Card = ({
             fibra={fibra}
             id='butao-fecha-modal'
             onClick={adicionarEvento}
-            
+            inputQuantidade={true}
             modalButton={true}
           />
 

@@ -21,6 +21,7 @@
 }
 
 
+
 #butao-fechar-home{
     position: absolute;
     left: 68%;
@@ -31,7 +32,7 @@
 
 
 #pesquisa-home{
-  margin-left: 400px;
+  margin-left: 400px; 
   display: flex;
   justify-content: center;
   align-items: center;

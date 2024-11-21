@@ -1,12 +1,11 @@
-// Modal.jsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Modal.css';
 import Butao from '../Botao/Butao'
 import EventosPadrao from '../Calendario/EventosPadrao';
 import moment from 'moment';
 import 'moment/locale/pt-br';
 import { useState } from 'react';
-import AdicionarAlimento from './AdicionarAlimento';
+import DadosAlimentos from './DadosAlimentos';
 const Modal = ({ 
   isOpen, 
   onClose, 
@@ -23,37 +22,33 @@ const Modal = ({
   carboidratos,
   sodio,
   gordura,
-  fibra
+  fibra,
+  inputQuantidade = false
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = (e) => setIsModalOpen(false)
-  
+  const [quantidade,setQuantidade] = useState(1)
   if (!isOpen) return null;
-/*const SalvarAlimentos = () => {
-  
-  const agora = moment();
-    EventosPadrao.push({
-      id: EventosPadrao.length + 1,
+
+  const SalvarAlimentos = () => {
+
+    const valoresDadosAlimentos = {}
+    DadosAlimentos.push({
       title: nome,
-      img: img,
-      start: agora.toDate(),
-      end:  agora.add(1, 'hour').toDate(),
-      color:'blue',
-      tipo:'atividade',
       calorias:calorias,
       carboidratos:carboidratos,
       proteinas:proteinas,
       sodio:sodio,
       gordura:gordura,
       fibra:fibra,
+      quantidade:quantidade,
+      img: img
     })
-    
-  alert("funcionou")
-  console.log()
+  //localStorage.setItem('dadosModal',JSON.stringify(DadosAlimentos))
   onClose();
-};*/
-
+};
+  
   const DeletarAlimento = () =>{
     console.log("opa")
   }
@@ -82,7 +77,17 @@ const Modal = ({
           marginBottom:'20px'}}>
           {nome}
         </h2>
-          <h4 style={{fontSize:'17px',fontWeight:'500',}}>Valores nutricionais:</h4>
+        <div className="tes" style={{display:"flex", alignItems:"center",justifyContent:"spaceAround"}}>
+        <h5 style={{fontWeight:'500',}}>Valores nutricionais:</h5>
+       {inputQuantidade &&(
+        <input type="number" 
+        id="quantidade-alimentos" 
+        style={{width:"80px",height:"40px",marginLeft:"40px"}}
+        onChange={(e)=>setQuantidade(e.target.value)} 
+        placeholder='Qtd'/>
+      )}   
+
+        </div>
         <div className="modal-valores">
           <p>Calorias: {calorias}g</p>
           <p>Carboidratos: {carboidratos}g</p>
@@ -95,7 +100,7 @@ const Modal = ({
         {modalButton &&(
           <Butao 
           id='butao-modal'
-          onClick={openModal} 
+          onClick={SalvarAlimentos} //openModal 
           valor='adicionar Alimento'
           />
 
@@ -107,22 +112,7 @@ const Modal = ({
          </div>
         )}
       </div>
-      {isModalOpen &&(
-        <AdicionarAlimento
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        nome={nome}
-        calorias={calorias}
-        carboidratos={carboidratos}
-        proteinas={proteinas}
-        sodio={sodio}
-        gordura={gordura}
-        fibra={fibra}
-        img={img}
-        />
-      )}  
-
-
+     
     </div>
   );
 };

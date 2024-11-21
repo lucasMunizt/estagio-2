@@ -5,34 +5,27 @@
     height: 100px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 #header-menu {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 90%;
+    width: 100%;
+    gap: 20px;
 }
 
 #h1-nutricard {
-    margin: 0;
-    font-size: 24px;
+    margin: 0 auto;
+    font-size: 28px;
     font-weight: bold;
     color: #077660;
-    flex: 1;
+    flex:1;
     text-align: center;
     margin-left: 50px;
     text-decoration: none;
-}
-
-#img-menu {
-    width: 25px;
-    height: 25px;
-    margin-right: -150px;
-    border-radius: 50%;
-    cursor: pointer;
-    text-align: center;
-   
+    margin-left: 100px;
 }
 
 .navbar-inner {
@@ -63,7 +56,24 @@
     display: flex;
     justify-content: center;
     color: black;
+
 }
+
+#icone-lapis,#icone-saida{
+    text-decoration: none;
+    color: inherit;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: #f0f0f0;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: black;
+    cursor: pointer;
+}
+
+
 
 .checkbtn {
     font-size: 30px;
@@ -76,6 +86,8 @@
 #check {
     display: none;
 }
+
+
 
 /* Estilo do container principal e do título */
 .container {
@@ -90,6 +102,32 @@
     display: flex;
     justify-content: flex-end; /* Alinha ao lado direito */
     gap: 20px;
+}
+
+#carrinho{
+    display: none;
+    align-items: center;
+    background-color:#dcf1db; ;
+    font-size: 26px;
+    margin-right: 20px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    justify-content: center;
+    cursor: pointer;
+}
+
+
+#img-menu {
+    width: 25px;
+    height: 25px;
+    margin-left: 15px;
+    display: block;
+    border-radius: 50%;
+    cursor: pointer;
+    text-align: center;
+   
 }
 
 /* Estilos para a área de informações do cliente */
@@ -152,6 +190,11 @@
     margin-top: 20px;
 }
 
+.informacoes-valores-data{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
 
 .valores-pessoais{
     display: flex;
@@ -163,8 +206,9 @@
 
 .button-section {
     display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+    margin: 0; 
     gap: 20px;
 }
 
@@ -177,15 +221,109 @@
     cursor: pointer;
     font-size: 14px;
     transition: background-color 0.3s;
+   
 }
 
 .client-button:hover {
     background-color: #5aa3a3;
 }
+.add-refeicao{
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+    z-index: 1000;
+    position: absolute;
+}
 
+.info-section-2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+}
+
+.info-item-2{
+    display: flex;
+    gap: 10px;
+}
+
+#start,#end{
+    font-size: 15px;
+    width: 150px;
+    margin-top: 10px;
+}
+
+.adicionar-refeicao{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#adicionar-alimento{
+    width:200px;
+    padding: 10px;
+    border: none;
+    border-radius: 12px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.dropdown-menu-3{
+    margin: 0;
+
+}
+
+#botao-list-refeicoes{
+    width: 300px;
+    margin: 0 ;
+    border: none;
+    background-color: #45C8AE;
+    padding: 10px;
+}
+
+.nav-bar{
+    display: flex;
+}
+
+.main-container-2 {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 200px;   
+}
+
+.button-sectionAlimentos{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.client-button-salvarAlimentos{
+    padding: 15px;
+    width: 300px;
+    border: none;
+    border-radius: 5px;
+    margin: 0;
+}
 
 @media(max-width:580px){
     #h1-nutricard{
-        margin-left: 0;
+        margin-left: 40px;
+        
+    }
+
+    #adicionar-alimento{
+        display: none;
+    }
+
+    #carrinho{
+        display: flex;
+    }
+    .main-container-2 {
+        margin-right: 0;  
     }
 }
+
+

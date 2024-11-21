@@ -195,7 +195,7 @@ const CustomToolbar = ({ label, onView, onNavigate, views }) => {
                     <button className='btn btn-secondary btn-1s mr-2 border-0' 
                     onClick={() => onNavigate('TODAY')} style={{width:'100px',height:'40px',marginTop:'18px'}}>Hoje</button>
                     <button className='btn btn-sm mr-2 text-secondary'
-                     style={{marginTop:'18px'}}
+                     style={{marginTop:'15px'}}
                      onClick={() => onNavigate('NEXT')}>
                         <i className="bi bi-caret-right"></i>
                     </button>

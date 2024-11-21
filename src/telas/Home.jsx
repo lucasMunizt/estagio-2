@@ -27,8 +27,10 @@ const Home = () => {
   const [error, setError] = useState(null);
   const [filteredData, setFilteredData] = useState([])
   const [filteredDataTest, setFilteredDataTest] = useState([])
+  const [alimentos,setAlimetos] = useState()
   let buscaTest = 'apple';
   //const url = 'http://localhost:3000/food'
+
 
   const buildUrl = (query) => {
   
@@ -37,13 +39,12 @@ const Home = () => {
     return `${baseUrl}`;
   };
 
-
   useEffect(()=>{
     const fetchData = async () =>{
       const url = new URL('http://localhost:3000/food');
       const urlTest = new URL('http://localhost:3000/food');
       try{
-        const params = { number: 2, query: busca, sort:'calories', sortDirection:'asc' }; // Define os parâmetros
+        const params = { number: 6, query: busca, sort:'calories', sortDirection:'desc' }; // Define os parâmetros
         const paramsTest = { number: 0, query: busca, sort:'fiber', sortDirection:'desc' }; // Define os parâmetros
         Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
         Object.keys(paramsTest).forEach(key => urlTest.searchParams.append(key, paramsTest[key]))
@@ -107,29 +108,27 @@ const Home = () => {
       e.preventDefault();
       const texto = e.target.value;
       setBusca(texto);
-      if (texto.trim() === '') {
+      setFilteredData(data);
+      /* if (texto.trim() === '') {
         setFilteredData(data); // Mostra todos os itens se busca estiver vazia
       }else{
-        const filtrados = data.filter((fruta)=>
+       const filtrados = data.filter((fruta)=>
           fruta.name.toLowerCase().startsWith(texto.toLowerCase())
-        );
-        setSugestoes(filtrados.slice(0,5));
-        setFilteredData(filtrados.slice(0,5)); 
-      }
-    };
+        );*/
+        //setSugestoes(filtrados.slice(0,5));
+        //setFilteredData(filtrados.slice(0,5));} 
+
+      };
+    
     
     const handleSelect = (fruta) => {
       setBusca(fruta.name);
-      setFrutaSelecionada(fruta)
+   //   setFrutaSelecionada(fruta)
       openModal();
       setSugestoes([]);
     } 
 
-    const GetRamdomFrutas = (frutas) =>{
-        return frutas.sort(()=>Math.random()-0.5).slice(0,5);
-    }
-
-
+    
   return (
     <>
       <Header/>
@@ -170,7 +169,7 @@ const Home = () => {
         )}
       </div>
      
-      <h4 className="nome-frut">Calorias</h4>
+      <h4 className="nome-frut">Recomendações</h4>
       <p id="card-informacao">Clique no card para mais informações</p>
       <div className="container-home">
         <Swiper
@@ -205,7 +204,7 @@ const Home = () => {
         </Swiper>
       </div>
       <div className="descrisao-card-click">
-      <h4 className="nome-frut">Proteínas</h4>
+      <h4 className="nome-frut">Recomendações</h4>
       <p id="card-informacao">Clique no card para mais informações</p>
      
       </div>
@@ -256,7 +255,6 @@ const Home = () => {
         gordura={index.fat}
         fibra={index.fiber}
         id='butao-fechar-home'
-       
         />
       ))}
       <footer></footer>
