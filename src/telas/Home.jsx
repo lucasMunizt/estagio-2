@@ -6,8 +6,6 @@ import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import { FreeMode, Pagination } from "swiper/modules";
 import Card from "../components/Card/Card";
-import fruta from "../assets/fruta.jpg";
-import fruta2 from "../assets/fruta.jpeg";
 import "./Home.css";
 import Input from "../components/input/Input";
 import iconBusca from "../assets/icons/iconBusca.png";
@@ -40,11 +38,11 @@ const Home = () => {
   };
 
   useEffect(()=>{
-    const fetchData = async () =>{
+   const fetchData = async () =>{
       const url = new URL('http://localhost:3000/food');
       const urlTest = new URL('http://localhost:3000/food');
       try{
-        const params = { number: 6, query: busca, sort:'calories', sortDirection:'desc' }; // Define os parâmetros
+        const params = { number: 5, query: busca, sort:'calories', sortDirection:'desc' }; // Define os parâmetros
         const paramsTest = { number: 0, query: busca, sort:'fiber', sortDirection:'desc' }; // Define os parâmetros
         Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
         Object.keys(paramsTest).forEach(key => urlTest.searchParams.append(key, paramsTest[key]))
@@ -104,6 +102,10 @@ const Home = () => {
         setSugestoes([]);
       }
     };*/
+
+ 
+
+
     const handleBuscar = (e) => {
       e.preventDefault();
       const texto = e.target.value;
@@ -138,8 +140,8 @@ const Home = () => {
         <span id="text">
           Encontre milhares de alimentos e sua respectiva informação calórica
         </span>
-      </div>
 
+        {/* <input type="text" id="pesquisa-home" placeholder="pesquisar" onChange={handleBuscar} value={busca}/> */}
       <Input
         id="pesquisa-home"
         icon={iconBusca}
@@ -169,6 +171,7 @@ const Home = () => {
         )}
       </div>
      
+      </div>
       <h4 className="nome-frut">Recomendações</h4>
       <p id="card-informacao">Clique no card para mais informações</p>
       <div className="container-home">
@@ -195,6 +198,7 @@ const Home = () => {
                 gordura={item.fat}
                 fibra={item.fiber}
                 unidadeDeMedida={item.unit_of_measure}
+                food_id={item.food_id}
                 />
                 <br />
                 <br />

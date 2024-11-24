@@ -1,6 +1,2 @@
-
-   const EventosPadrao = [
-     {},
-   ];
-
+const EventosPadrao = [];
 export default EventosPadrao;

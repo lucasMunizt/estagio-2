@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import 'moment/locale/pt-br';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
@@ -13,6 +13,9 @@ import Card from '../Card/Card';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
+import Refeicao from '../../telas/Refeicao';
+
+import { json, useNavigate } from 'react-router-dom';
 moment.locale('pt-br'); // Define o locale do moment para português
 const localizer = momentLocalizer(moment); // Passa o moment para o localizer
 
@@ -71,8 +74,45 @@ const Calendario = () => {
     const DragAndDropCalendar = withDragAndDrop(Calendar);
     const [eventos, setEventos] = useState(EventosPadrao);
     const [eventoSelecionados, setEventoSelecionados] = useState(null);
- 
-    
+    const [dadosUsuario, setDadosUsuario] = useState(JSON.parse(localStorage.getItem('user'))); 
+    let start = moment().clone().startOf('month').format('YYYY-MM-DD')
+    let end = moment().clone().endOf('month').format('YYYY-MM-DD')
+    const navigate1 = useNavigate();
+
+     const fetchEventos = async () =>{
+     
+        try{
+            const response = await fetch(`http://localhost:3000/meal/${dadosUsuario[0].user_id}/${start}/${end}`);
+            if(!response.ok){
+                throw new Error('Não foi possível carregar os eventos');
+            }
+            const data = await response.json()
+          // console.log( JSON.stringify(data))
+            
+            const eventosFormatados = data.map(evento => ({
+                id: evento.meal_id,              
+                title: evento.name,             
+                start: new Date(evento.start_date), 
+                end: new Date(evento.end_date),        
+                calories: evento.calories,            
+                fat: evento.fat,                      
+                carbohydrates: evento.carbohydrates,  
+                sodium: evento.sodium,            
+                fiber: evento.fiber,              
+                protein: evento.protein,          
+                color: evento.atividade,
+                quantidade: evento.amount 
+            }));
+            
+            setEventos(eventosFormatados)
+        }catch(error){
+            console.error(error);
+        }
+     }   
+
+     useEffect(()=>{
+        fetchEventos();
+     },[])
 
     const eventStyle = (e) => ({
         style: {
@@ -81,13 +121,13 @@ const Calendario = () => {
     });
 
     const MoverEnvetos = (data) => {
-        const { start, end } = data;
-        const updatedEventos = eventos.map((event) => {
-            if (event.id === data.event.id) {
+        const { start_date, end_date } = data;
+        const updatedEventos = teste.map((event) => {
+            if (event.food_id === data.event.id) {
                 return {
                     ...event,
-                    start: new Date(start),
-                    end: new Date(end),
+                    start: new Date(start_date),
+                    end: new Date(end_date),
                 };
             }
             return event;
@@ -97,6 +137,7 @@ const Calendario = () => {
 
     const handleEventOpen = (e) => {
         setEventoSelecionados(e);
+        navigate1('/refeicao', { state: { meal_id: e.id } });
     };
 
     const handleEventClose = () => {
@@ -133,23 +174,37 @@ const Calendario = () => {
             </div>
             </div>
                  
-            {eventoSelecionados && (
+            {/* {eventoSelecionados && (
               <Modal
               isOpen={true}
               onClose={handleEventClose}
-              nome={eventoSelecionados.title}
-              calorias={eventoSelecionados.calorias}
-              carboidratos={eventoSelecionados.carboidratos}
-              proteinas={eventoSelecionados.proteinas}
-              sodio={eventoSelecionados.sodio}
-              gordura={eventoSelecionados.gordura}
-              fibra={eventoSelecionados.fibra}  
+              nome={eventoSelecionados.name}
+              calorias={eventoSelecionados.calories}
+              carboidratos={eventoSelecionados.carbohydrates}
+              proteinas={eventoSelecionados.protein}
+              sodio={eventoSelecionados.sodium}
+              gordura={eventoSelecionados.fat}
+              fibra={eventoSelecionados.fiber}  
               img={eventoSelecionados.img}
               id='butao-fechar-calendario'
               edicaoModal = {true}
               opamen='tes-botao-modal-calendario'
               />
-            )}
+            )} */}
+
+
+                
+            {/* {eventoSelecionados && eventos.map((index)=>(
+             <div
+             key={index.id}
+             onClick={()=> navigate('/refeicao',
+                {state: {meal_id: index.id},})
+            }
+             style={{cursor:"pointer"}} 
+             >
+             </div>
+            ))} */}
+
         </div>
     );
 };

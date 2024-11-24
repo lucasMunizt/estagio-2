@@ -1,6 +1,3 @@
-const DadosAlimentos = [
-  
-
-];
+const DadosAlimentos = [];
 
   export default DadosAlimentos;

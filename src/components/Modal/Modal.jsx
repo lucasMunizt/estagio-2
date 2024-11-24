@@ -23,7 +23,8 @@ const Modal = ({
   sodio,
   gordura,
   fibra,
-  inputQuantidade = false
+  inputQuantidade = false,
+  food_id
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
@@ -43,7 +44,8 @@ const Modal = ({
       gordura:gordura,
       fibra:fibra,
       quantidade:quantidade,
-      img: img
+      img: img,
+      food_id:food_id
     })
   //localStorage.setItem('dadosModal',JSON.stringify(DadosAlimentos))
   onClose();

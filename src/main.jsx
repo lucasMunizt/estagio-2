@@ -8,6 +8,7 @@ import Cadastro from './telas/Cadastro.jsx'
 import Home from './telas/Home.jsx'
 import DadosPessoais from './telas/DadosPessoais.jsx'
 import Calendario from './components/Calendario/Calendario.jsx'
+import Refeicao from './telas/Refeicao.jsx'
 
 const router = createBrowserRouter([
   
@@ -19,7 +20,8 @@ const router = createBrowserRouter([
       { path: 'cadastro', element: <Cadastro /> },
       { path: 'home', element: <Home /> },
       { path: 'dadosPessoais', element: <DadosPessoais /> },
-      {path: 'calendario', element: <Calendario/> }
+      {path: 'calendario', element: <Calendario/> },
+      {path: 'refeicao',element: <Refeicao/>}
     ]
   }
 ])

@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import './Header.css';
 import Calendario from '../Calendario/Calendario';
-import { useNavigate } from 'react-router-dom';
+import { json, useNavigate } from 'react-router-dom';
 import imagemUsuario from '../../assets/icons/iconPersona.png';
 import EventosPadrao from '../Calendario/EventosPadrao';
 import dadosAlimentosArray from '../Modal/DadosAlimentos';
 const Header = () => {
   const [menuAberto, setMenuAberto] = useState(false);
   const [adicionarRefeicao, setaAdicionarRefeicao] = useState(false);
-  const [dadosUsuario, setDadosUsuario] = useState([]); // Estado para armazenar os dados do usuário
+  const [dadosUsuario, setDadosUsuario] = useState([]); 
   const [dadosAlimentos, setDadosAlimentos] = useState(dadosAlimentosArray);
   const [start, setStart] = useState()
   const [end, setEnd] = useState()
   const [quantidade, setQuantidade] = useState()
   const [atividade, setAtividade] = useState()
   const [refeicoes,setRefeicoes]  = useState()
-    
+
   const navigate = useNavigate();
 
   const abrirMenu = (e) => {
@@ -33,9 +33,21 @@ const Header = () => {
 
   }
 
+
+  const [dateTime, setDateTime] = useState('');
+
+  useEffect(() => {
+    // Obtém a data e hora atua
+    const agora = new Date();
+    // Obtém a hora atual no formato local
+    const horaAtual = agora.toLocaleTimeString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+    
+    // Define o valor inicial
+    setDateTime(horaAtual);
+  }, []);
+
   useEffect(() => {
     const userData = localStorage.getItem('user');
-   // const modalData = localStorage.getItem('dadosModal');
     if (userData) {
       const parseData = JSON.parse(userData)
       setDadosUsuario(parseData);
@@ -43,19 +55,12 @@ const Header = () => {
     }else{
       console.log('nenhum dado encontrados no localStorage');
     }
-    /* if(modalData){
-      const parseModalData = JSON.parse(modalData)
-      setDadosAlimentos(parseModalData)
-    }else{
-      console.log('nenhum dado encontrado no localStorage');
-    } */
-
-
+    
   }, []); // Executa apenas na montagem do componente
 
   const handleInputChange = (e) =>{
     const {id,value} = e.target;
-
+   
     if(id === 'start'){
       setStart(value);
     }
@@ -74,36 +79,58 @@ const Header = () => {
       setAtividade("blue")
     }
     else if(value === "Merenda"){
-      setAtividade("yellow")
+      setAtividade("gray")
     }
 
     else if(value === "Jantar"){
       setAtividade("red")
     }
   };
-  const SalvarAlimentos = () => {
-    console.log("quantidadenoArray: "+dadosAlimentos.length)
-    if( dadosAlimentos.length > 0){
-      dadosAlimentos.map((index)=>(
-        EventosPadrao.push({
-          id: EventosPadrao.length + 1,
-          title: index.title,
-          img: index.img,
-          start: new Date(start),
-          end: new Date(end),
-          color:atividade,
-          tipo:refeicoes,
-          calorias:index.calorias,
-          carboidratos:index.carboidratos,
-          proteinas:index.proteinas,
-          sodio: index.sodio,
-          gordura:index.gordura,
-          fibra:index.fibra
-        })
-      )) 
-    //  localStorage.removeItem('dadosModal')
-      setDadosAlimentos([])
 
+  const SalvarAlimentos =  async () => {
+    const url ='http://localhost:3000/meal/create'  
+    if(dadosAlimentos.length > 0){
+     const evento = {
+      meal : {
+        start_date: new Date(start),
+        end_date: new Date(end),
+        user_id: dadosUsuario[0].user_id,
+        color:atividade,
+        name:refeicoes,
+        foods: dadosAlimentos.map((index)=>({
+          food_id: index.food_id,
+          amount: index.quantidade,
+          calories:index.calorias,
+          fat:index.gordura,
+          carbohydrates:index.carboidratos,
+          sodium: index.sodio,
+          fiber:index.fibra,
+          protein:index.proteinas
+        })),
+      }
+        
+      };
+      try{
+        const response = await fetch(url,{
+          method: 'POST',
+          headers:{
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(evento),
+        });
+
+        if(!response.ok){
+          throw new Error('Não foi possível criar o evento')
+        }else{
+        //  navigate('/calendario');
+        }
+        const data = await response.json();
+        setDadosAlimentos([])
+        setaAdicionarRefeicao(false)
+        alert("alimentos salvos")
+      }catch(error){
+        console.error(error);
+      }
     }
     else{
       alert('Nenhum alimento foi adicionado. Clique no card e adicione o alimento');
@@ -143,7 +170,7 @@ const Header = () => {
               />
               <input type="checkbox" id="check" />
               <label htmlFor="check" className="checkbtn">
-                <i className="fas fa-bars"></i>
+                <i className="fas fa-bars">opa</i>
               </label>
             </div>
           </nav>
@@ -155,7 +182,7 @@ const Header = () => {
 
           <div key={index.id || idx} className="client-info">
           <div className="client-name">
-            <a href="/login"><i class="bi bi-box-arrow-left" id='icone-saida'></i></a>
+            <a href="/login"><i className="bi bi-box-arrow-left" id='icone-saida'></i></a>
             <a href="/home" id="icone-home"><i className="bi bi-house"></i></a>
             <i className="bi bi-pencil" id='icone-lapis'></i>
             <h2 id="valor-nome">{index.name || 'Usuário'}</h2>
@@ -168,7 +195,7 @@ const Header = () => {
               </div>
               <div className="info-item">
                 <p>Calorias a consumir</p>
-                <span className="info-value">{index.calorie_goal - (index.calories_consumed || 0)|| 0}</span>
+                <span className="info-value">{index.calorie_goal - (index.calories_consumed || 0) || 2000}</span>
               </div>
             </div>
             <div className="valores-pessoais">
@@ -203,15 +230,25 @@ const Header = () => {
             <h4>Nome: {index.title}</h4>
             <div className="informacoes-valores-data">
               <div className="info-item-2">
-                <input 
+              <input
                   type="datetime-local"
-                  onChange={handleInputChange}
                   id="start"
-                />
-                <input 
-                  type="datetime-local" 
                   onChange={handleInputChange}
+                 // value={dateTime}
+                  style={{
+                    textAlign: "center",
+                    padding: "5px",
+                  }}
+                />
+                <input
+                  type="datetime-local"
                   id="end"
+                 // value={dateTime}
+                  onChange={handleInputChange}
+                  style={{
+                    textAlign: "center",
+                    padding: "5px",
+                  }}
                 />
 
               </div>
@@ -227,7 +264,7 @@ const Header = () => {
                   aria-expanded="false"
                   id="botao-list-refeicoes"
                 >
-                  Refeições
+                  Tipo de Refeição
                 </button>
                 <ul className="dropdown-menu">
                   <li>

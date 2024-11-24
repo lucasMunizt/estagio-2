@@ -16,7 +16,8 @@ const Card = ({
   sodio,
   gordura,
   fibra,
-  unidadeDeMedida
+  unidadeDeMedida,
+  food_id
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false); // Estado do modal
   const [eventos, setEventos] = useState(EventosPadrao);
@@ -50,6 +51,7 @@ const Card = ({
             onClick={adicionarEvento}
             inputQuantidade={true}
             modalButton={true}
+            food_id={food_id}
           />
 
 
