@@ -17,7 +17,15 @@ const Card = ({
   gordura,
   fibra,
   unidadeDeMedida,
-  food_id
+  food_id,
+  modalButton = true,
+  inputQuantidade = true,
+  valorQuantidade = false,
+  quantidade,
+  edicaoModal = false,
+  meal_id
+
+
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false); // Estado do modal
   const [eventos, setEventos] = useState(EventosPadrao);
@@ -47,12 +55,17 @@ const Card = ({
             gordura={gordura}
             sodio={sodio}
             fibra={fibra}
-            id='butao-fecha-modal'
+            id={id}
             onClick={adicionarEvento}
-            inputQuantidade={true}
-            modalButton={true}
+            inputQuantidade={inputQuantidade}
+            modalButton={modalButton}
             food_id={food_id}
+            valorQuantidade={valorQuantidade}
+            quantidadevalor={quantidade}
+            edicaoModal ={edicaoModal}
+            meal_id={meal_id}
           />
+  
 
 
       <button
@@ -63,7 +76,7 @@ const Card = ({
         className="container-card-pai"
       >
         
-        <div className="conatiner-card" id={id}>
+        <div className="conatiner-card" >
           <div className="card-img">
             <img src={img} alt={descrisao} />
             <h4 id="nome">{nome}</h4>
@@ -75,9 +88,9 @@ const Card = ({
             <div className="valores-nutricionais">
               <h4 className="h5-nutricao">Valores Nutricionais:</h4>
               <div className="informacoes">
-                <span id="calorias">Calorias {kcal}kcal</span>
-                <span id="massa">Carboidrato {carboidrato}g</span>
-                <span id="proteina">Proteína {proteina}g</span>
+                <span id="calorias">Calorias {kcal || 0}kcal</span>
+                <span id="massa">Carboidrato {carboidrato || 0}g</span>
+                <span id="proteina">Proteína {proteina || 0}g</span>
               </div>
               
             </div>

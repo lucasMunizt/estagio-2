@@ -79,6 +79,7 @@ const Calendario = () => {
     let end = moment().clone().endOf('month').format('YYYY-MM-DD')
     const navigate1 = useNavigate();
 
+
      const fetchEventos = async () =>{
      
         try{
@@ -87,7 +88,6 @@ const Calendario = () => {
                 throw new Error('Não foi possível carregar os eventos');
             }
             const data = await response.json()
-          // console.log( JSON.stringify(data))
             
             const eventosFormatados = data.map(evento => ({
                 id: evento.meal_id,              
@@ -100,11 +100,12 @@ const Calendario = () => {
                 sodium: evento.sodium,            
                 fiber: evento.fiber,              
                 protein: evento.protein,          
-                color: evento.atividade,
-                quantidade: evento.amount 
+                color: evento.name === "Café Da Manhã" ? "green" : evento.name === "Almoço" ? "#3174AD" : evento.name === "Merenda" ? "#311579" : "red",
+                quantidade: evento.amount
             }));
             
             setEventos(eventosFormatados)
+            console.log(eventosFormatados)
         }catch(error){
             console.error(error);
         }
@@ -137,7 +138,13 @@ const Calendario = () => {
 
     const handleEventOpen = (e) => {
         setEventoSelecionados(e);
-        navigate1('/refeicao', { state: { meal_id: e.id } });
+    
+        navigate1('/refeicao', { 
+            state: { 
+                meal_id: e.id, 
+                title: e.title 
+            } 
+        });
     };
 
     const handleEventClose = () => {
@@ -147,7 +154,10 @@ const Calendario = () => {
     return (
         <div className='tela'>
             <div className="header-barra">
-                <Header/>
+                <Header
+                inputQuantidade={true}
+                valor='Adicione Alimento'
+                />
             </div>
             <div className="container-calendario">
             <div className="toolbar">
@@ -174,37 +184,6 @@ const Calendario = () => {
             </div>
             </div>
                  
-            {/* {eventoSelecionados && (
-              <Modal
-              isOpen={true}
-              onClose={handleEventClose}
-              nome={eventoSelecionados.name}
-              calorias={eventoSelecionados.calories}
-              carboidratos={eventoSelecionados.carbohydrates}
-              proteinas={eventoSelecionados.protein}
-              sodio={eventoSelecionados.sodium}
-              gordura={eventoSelecionados.fat}
-              fibra={eventoSelecionados.fiber}  
-              img={eventoSelecionados.img}
-              id='butao-fechar-calendario'
-              edicaoModal = {true}
-              opamen='tes-botao-modal-calendario'
-              />
-            )} */}
-
-
-                
-            {/* {eventoSelecionados && eventos.map((index)=>(
-             <div
-             key={index.id}
-             onClick={()=> navigate('/refeicao',
-                {state: {meal_id: index.id},})
-            }
-             style={{cursor:"pointer"}} 
-             >
-             </div>
-            ))} */}
-
         </div>
     );
 };

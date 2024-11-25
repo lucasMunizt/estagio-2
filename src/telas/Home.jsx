@@ -12,6 +12,7 @@ import iconBusca from "../assets/icons/iconBusca.png";
 import ArrayFrutas from "../data/Frutas";
 import Modal from "../components/Modal/Modal";
 import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
 const Home = () => {
   const [cards, setCards] = useState(3); // 3
   const [cardsEspassamento, setcardsEspassament] = useState(10);
@@ -29,36 +30,35 @@ const Home = () => {
   let buscaTest = 'apple';
   //const url = 'http://localhost:3000/food'
 
+  const [dadosUsuario, setDadosUsuario] = useState([]); 
+  useEffect(() => {
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      const parseData = JSON.parse(userData)
+      setDadosUsuario(parseData);
 
-  const buildUrl = (query) => {
-  
-   // let params = new URLSearchParams({ number:1}); 
-    if (!query) query ='';
-    return `${baseUrl}`;
-  };
+    }else{
+      console.log('nenhum dado encontrados no localStorage');
+    }
+  },[])
+
+ 
+
 
   useEffect(()=>{
    const fetchData = async () =>{
       const url = new URL('http://localhost:3000/food');
-      const urlTest = new URL('http://localhost:3000/food');
       try{
-        const params = { number: 5, query: busca, sort:'calories', sortDirection:'desc' }; // Define os parâmetros
-        const paramsTest = { number: 0, query: busca, sort:'fiber', sortDirection:'desc' }; // Define os parâmetros
+        const params = { number: 10, query: busca, sort:'fiber', sortDirection:'desc' }; // Define os parâmetros
         Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
-        Object.keys(paramsTest).forEach(key => urlTest.searchParams.append(key, paramsTest[key]))
         const res = await fetch(url);
-        const res2 = await fetch(urlTest);
         if(!res.ok){
           throw new Error("Erro na busca");
         }
         const result = await res.json();
-        const result2 = await res2.json();
-        //console.log("Dados retornados da API:", result);
-        //console.log(JSON.stringify(result2))
         setData(result)
-        //console.log(data)
+
         setFilteredData(result)
-        setFilteredDataTest(result2)
        
       }
       catch(error){
@@ -67,6 +67,35 @@ const Home = () => {
     };
     fetchData();
   },[busca])
+
+
+  useEffect(() => {
+    const fetchFavorites = async () => {
+      if (!dadosUsuario || dadosUsuario.length === 0) return;
+  
+      const userId = dadosUsuario[0]?.user_id;
+      if (!userId) {
+        console.error("user_id não encontrado nos dados do usuário");
+        return;
+      }
+  
+      try {
+        const response = await fetch(`http://localhost:3000/food/favorites/${userId}`);
+        if (!response.ok) {
+          throw new Error("Erro ao buscar alimentos favoritos");
+        }
+        const favorites = await response.json();
+        setFilteredDataTest(favorites);
+      } catch (error) {
+        console.error("Erro ao buscar favoritos:", error.message);
+        setError(error.message);
+      }
+      
+    };
+  
+    fetchFavorites();
+  }, [dadosUsuario]);
+
 
 
   useEffect(() => {
@@ -133,15 +162,16 @@ const Home = () => {
     
   return (
     <>
-      <Header/>
+      <Header
+        valor='Salvar Alimento'
+        inputQuantidade={true}
+      />
       <div className="div-pai">
       <div className="descrisao-home">
         <h3>O que você está buscando ?</h3>
-        <span id="text">
+        <p id="texto-p">
           Encontre milhares de alimentos e sua respectiva informação calórica
-        </span>
-
-        {/* <input type="text" id="pesquisa-home" placeholder="pesquisar" onChange={handleBuscar} value={busca}/> */}
+        </p>
       <Input
         id="pesquisa-home"
         icon={iconBusca}
@@ -152,23 +182,6 @@ const Home = () => {
         value={busca}
       
       />
-       {busca.trim() && filteredData.length > 0 &&(
-          <ul id="lista-busca">
-            {filteredData.map((fruta)=>(
-              <li
-              key={fruta.food_id}
-              onClick={() => handleSelect(fruta)}
-              style={{
-                padding: '20px',
-                cursor: 'pointer',
-                borderBottom: '1px solid #eee',
-                
-              }}>
-                {fruta.name}
-              </li>
-            ))}
-          </ul>
-        )}
       </div>
      
       </div>
@@ -191,15 +204,17 @@ const Home = () => {
               <Card
                 nome={item.name}
                 img={`https://img.spoonacular.com/ingredients_500x500/${item.image}`}
-                kcal={item.calories}
-                proteina={item.protein}
-                carboidrato={item.carbohydrates}
-                sodio={item.sodium}
-                gordura={item.fat}
-                fibra={item.fiber}
+                kcal={item.calories ? item.calories.toFixed(2) : null}
+                proteina={item.protein ? item.protein.toFixed(2): null}
+                carboidrato={item.carbohydrates ? item.carbohydrates.toFixed(2): null}
+                sodio={item.sodium ? item.sodium.toFixed(2) : null}
+                gordura={item.fat ? item.fat.toFixed(2): null}
+                fibra={item.fiber ? item.fiber.toFixed(2): null}
                 unidadeDeMedida={item.unit_of_measure}
                 food_id={item.food_id}
+                id='butao-fecha-modal'
                 />
+                <br />
                 <br />
                 <br />
             </SwiperSlide>
@@ -208,40 +223,45 @@ const Home = () => {
         </Swiper>
       </div>
       <div className="descrisao-card-click">
-      <h4 className="nome-frut">Recomendações</h4>
+      <h4 className="nome-frut">Favoritos</h4>
       <p id="card-informacao">Clique no card para mais informações</p>
      
       </div>
      <div className="container-card2">
-        <Swiper
-          slidesPerView={cards}
-          spaceBetween={cardsEspassamento}
-          freeMode={true}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[FreeMode, Pagination]}
-          className="mySwiper"
-        >
-         { 
-          filteredDataTest.map((item) => (
-            <SwiperSlide key={item.food_id}>
-              <Card
-                 nome={item.name}
-                 img={`https://img.spoonacular.com/ingredients_500x500/${item.image}`}
-                 kcal={item.calories}
-                 proteina={item.protein}
-                 carboidrato={item.carbohydrates}
-                 sodio={item.sodium}
-                 gordura={item.fat}
-                 fibra={item.fiber}
-                />
-                <br />
-                <br />
-            </SwiperSlide>
-          ))
-         }
-        </Swiper>
+     {filteredDataTest.length === 0 ? (
+    <p id="frase-sem-alimentos">Você ainda não tem alimentos favoritos.</p>
+) : (
+  <Swiper
+    slidesPerView={cards}
+    spaceBetween={cardsEspassamento}
+    freeMode={true}
+    pagination={{
+      clickable: true,
+    }}
+    modules={[FreeMode, Pagination]}
+    className="mySwiper"
+  >
+    {filteredDataTest.map((item) => (
+      <SwiperSlide key={item.food_id}>
+        <Card
+          nome={item.name}
+          img={`https://img.spoonacular.com/ingredients_500x500/${item.image}`}
+          kcal={item.calories ? item.calories.toFixed(2) : null}
+          proteina={item.protein ? item.protein.toFixed(2) : null}
+          carboidrato={item.carbohydrates ? item.carbohydrates.toFixed(2) : null}
+          sodio={item.sodium ? item.sodium.toFixed(2) : null}
+          gordura={item.fat ? item.fat.toFixed(2) : null}
+          fibra={item.fiber ? item.fiber.toFixed(2) : null}
+          edicaoModal={false}
+          inputQuantidade={false}
+          modalButton={true}
+        />
+        <br />
+        <br />
+      </SwiperSlide>
+    ))}
+  </Swiper>
+)}
       </div>
 
       {isModalOpen && filteredData.map((index)=>(
@@ -261,7 +281,7 @@ const Home = () => {
         id='butao-fechar-home'
         />
       ))}
-      <footer></footer>
+      <Footer/>
     </>
   );
 };

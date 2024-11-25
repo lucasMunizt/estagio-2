@@ -38,6 +38,7 @@
 
 
 
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -85,9 +86,6 @@
   color: #333; 
 }
 
-
-
-
 #butao-modal {
   display: block;
   width: 100%;
@@ -105,23 +103,36 @@
   background-color: #2bb57f;
 }
 
-.edicoes{
+#icone-refeicoes-editar{
   margin-top: 10px;
   margin-left: 20px;
-  background-color: rgb(243, 156, 156);
-  width: 30px;
-  height: 30px;
+  background-color: #c7c5c5;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: black;
+ display: flex;
+ align-items: center;
+ justify-content: center; 
+ cursor: pointer;
 }
 
-.edicoes:hover{
-  transition: .12s;
-  background-color: rgb(173, 78, 78);
+#icone-refeicoes-deletar{
+  margin-top: 10px;
+  margin-left: 20px;
+  background-color:rgb(241, 0, 0);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+ display: flex;
+ align-items: center;
+ justify-content: center; 
+ cursor: pointer;
+}
+.modificar-dados{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 5px;
 }
 
 .butao-fecha{
@@ -174,6 +185,25 @@
   font-size: 24px;
 }
 
+.input-quantidade-favoritos{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+#icone-favoritos{
+  margin-top: 10px;
+  margin-left: 20px;
+  background-color:#c7c5c5;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+ display: flex;
+ align-items: center;
+ justify-content: center; 
+ cursor: pointer;
+}
 
 
   @media(max-width:1200px){

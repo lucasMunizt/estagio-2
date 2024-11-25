@@ -5,17 +5,17 @@ import { json, useNavigate } from 'react-router-dom';
 import imagemUsuario from '../../assets/icons/iconPersona.png';
 import EventosPadrao from '../Calendario/EventosPadrao';
 import dadosAlimentosArray from '../Modal/DadosAlimentos';
-const Header = () => {
+const Header = ({inputQuantidade = false,valor}) => {
   const [menuAberto, setMenuAberto] = useState(false);
   const [adicionarRefeicao, setaAdicionarRefeicao] = useState(false);
   const [dadosUsuario, setDadosUsuario] = useState([]); 
   const [dadosAlimentos, setDadosAlimentos] = useState(dadosAlimentosArray);
   const [start, setStart] = useState()
   const [end, setEnd] = useState()
-  const [quantidade, setQuantidade] = useState()
+  const [quantidadeCalorias, setQuantidadeCalarias] = useState()
   const [atividade, setAtividade] = useState()
   const [refeicoes,setRefeicoes]  = useState()
-
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
   const abrirMenu = (e) => {
@@ -37,21 +37,15 @@ const Header = () => {
   const [dateTime, setDateTime] = useState('');
 
   useEffect(() => {
-    // Obtém a data e hora atua
-    const agora = new Date();
-    // Obtém a hora atual no formato local
-    const horaAtual = agora.toLocaleTimeString('pt-BR', { timeZone: 'America/Sao_Paulo' });
-    
-    // Define o valor inicial
-    setDateTime(horaAtual);
-  }, []);
-
-  useEffect(() => {
     const userData = localStorage.getItem('user');
     if (userData) {
       const parseData = JSON.parse(userData)
+      const userId = parseData[0].user_id
       setDadosUsuario(parseData);
-
+      if(userId){
+        fetchUser(userId)
+      }
+      
     }else{
       console.log('nenhum dado encontrados no localStorage');
     }
@@ -88,12 +82,13 @@ const Header = () => {
   };
 
   const SalvarAlimentos =  async () => {
+   
     const url ='http://localhost:3000/meal/create'  
     if(dadosAlimentos.length > 0){
      const evento = {
       meal : {
-        start_date: new Date(start),
-        end_date: new Date(end),
+        start_date: new Date(start).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }),
+        end_date: new Date(end).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }),
         user_id: dadosUsuario[0].user_id,
         color:atividade,
         name:refeicoes,
@@ -110,6 +105,7 @@ const Header = () => {
       }
         
       };
+      console.log(JSON.stringify(evento))
       try{
         const response = await fetch(url,{
           method: 'POST',
@@ -122,12 +118,11 @@ const Header = () => {
         if(!response.ok){
           throw new Error('Não foi possível criar o evento')
         }else{
-        //  navigate('/calendario');
+        navigate('/calendario');
         }
         const data = await response.json();
         setDadosAlimentos([])
         setaAdicionarRefeicao(false)
-        alert("alimentos salvos")
       }catch(error){
         console.error(error);
       }
@@ -138,7 +133,107 @@ const Header = () => {
     
     setaAdicionarRefeicao(false)
   }
+
+
+  const fetchUser = async (userId) => {
+    try {
+      const url = `http://localhost:3000/user/${userId}`;
+      const response = await fetch(url);
   
+      if (!response.ok) {
+        throw new Error("Erro ao buscar dados do usuário.");
+      }
+  
+      const data = await response.json();
+    //  console.log("Dados do usuário:", data);
+      setUser(data)
+      console.log(user)
+       // Verifique os dados no console
+    } catch (error) {
+      console.error("Erro ao buscar usuário:", error);
+    }
+  };
+  
+
+
+
+
+  const handleUpdate = async () => {
+    try {
+      const updateValores = {
+        start_date: new Date(start).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }),
+        end_date: new Date(end).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }),
+        user_id: dadosUsuario[0].user_id,
+        color:atividade,
+        foods: dadosAlimentos.map((index)=>({
+          food_id: index.food_id,
+          amount: index.quantidade,
+          calories:index.calorias,
+          fat:index.gordura,
+          carbohydrates:index.carboidratos,
+          sodium: index.sodio,
+          fiber:index.fibra,
+          protein:index.proteinas
+        }))
+
+      }
+
+      const response = await fetch(`http://localhost:3000/meal/update`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updateValores),
+      });
+
+      if (response.ok) {
+        Swal.fire('Atualizado!', 'Os dados foram atualizados com sucesso.', 'success');
+        onClose(); // Fecha o modal
+        window.location.reload(); // Recarrega para refletir as alterações
+      } else {
+        throw new Error('Erro ao atualizar os dados.');
+      }
+    } catch (error) {
+      Swal.fire('Erro', 'Não foi possível atualizar os dados.', 'error');
+    }
+  };
+
+
+  const updateUsuario = async () => {
+    try {
+        // Criação do objeto com os valores de atualização
+        const updateValores = {
+            user: {
+                user_id: user[0].user_id, // Certifique-se de que 'user' está corretamente inicializado
+                mail: user[0].mail,
+                calories_consumed: 1
+            }
+        };
+
+        // Realização da requisição PUT
+        const response = await fetch(`http://localhost:3000/user/update`, {
+            method: 'PUT', // Método HTTP para atualizar
+            headers: {
+                'Content-Type': 'application/json', // Indica que o corpo é JSON
+            },
+            body: JSON.stringify(updateValores), // Converte o objeto para JSON
+        });
+
+        // Verificação de resposta
+        if (!response.ok) {
+            // Lida com erros HTTP
+            throw new Error(`Erro na atualização: ${response.status} - ${response.statusText}`);
+        }
+
+        // Manipula a resposta da API
+        const data = await response.json();
+        console.log('Usuário atualizado com sucesso:', data);
+    } catch (error) {
+        // Lida com erros na requisição
+        console.error('Erro ao atualizar o usuário:', error.message);
+    }
+};
+
   
   return (
     <div>
@@ -149,12 +244,14 @@ const Header = () => {
           </h1>
           <nav className="nav-bar">
            <div className="adiconar-refeicao">
+            {inputQuantidade &&(
+              
             <button 
             id='adicionar-alimento'
             onClick={SalvarRefeicoes}
-            >Adicionar Refeição
-            
+            >{valor}
             </button>
+            )}
             <i 
             className="bi bi-cart-plus-fill"
             id='carrinho'
@@ -184,14 +281,14 @@ const Header = () => {
           <div className="client-name">
             <a href="/login"><i className="bi bi-box-arrow-left" id='icone-saida'></i></a>
             <a href="/home" id="icone-home"><i className="bi bi-house"></i></a>
-            <i className="bi bi-pencil" id='icone-lapis'></i>
+            <i className="bi bi-pencil" id='icone-lapis' onClick={updateUsuario}></i>
             <h2 id="valor-nome">{index.name || 'Usuário'}</h2>
           </div>
           <div className="info-section">
             <div className="informacoes-valores">
               <div className="info-item">
                 <p>Calorias consumidas</p>
-                <span className="info-value">{index.calories_consumed || 0}</span>
+                <span className="info-value">{user[0].calories_consumed .toFixed(2)|| 0}</span>
               </div>
               <div className="info-item">
                 <p>Calorias a consumir</p>
@@ -214,7 +311,6 @@ const Header = () => {
             </div>
           </div>
           <div className="button-section">
-            <button className="client-button">Favoritos</button>
             <button className="client-button" onClick={abrirCalendario}>Calendário</button>
           </div>
         </div>
@@ -234,7 +330,6 @@ const Header = () => {
                   type="datetime-local"
                   id="start"
                   onChange={handleInputChange}
-                 // value={dateTime}
                   style={{
                     textAlign: "center",
                     padding: "5px",
@@ -243,7 +338,6 @@ const Header = () => {
                 <input
                   type="datetime-local"
                   id="end"
-                 // value={dateTime}
                   onChange={handleInputChange}
                   style={{
                     textAlign: "center",
@@ -254,63 +348,63 @@ const Header = () => {
               </div>
               <div className="info-item">
                 
-            <div className="dropdown-menu-3">
-              {/* Refeições */}
-              <div className="dropdown">
-                <button
-                  className="btn btn-secondary dropdown-toggle"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  id="botao-list-refeicoes"
-                >
-                  Tipo de Refeição
-                </button>
-                <ul className="dropdown-menu">
-                  <li>
-                    <button 
-                    className="dropdown-item" 
-                    type="button" 
-                    id="refeicoes" 
-                    onClick={() => handleRefeicoesChange("Café Da Manhã")} 
-                    >
-                      Café Da Manhã
-                    </button>
-                  </li>
-                  <li>
-                    <button 
-                    className="dropdown-item" 
-                    type="button" 
-                    id="almoco" 
-                    onClick={() => handleRefeicoesChange("Almoço")} 
-                    > 
-                      Almoço
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      className="dropdown-item"
-                      type="button"
-                      id="merenda"
-                      onClick={() => handleRefeicoesChange("Merenda")} 
-                    >
-                      Merenda
-                    </button>
-                  </li>
-                  <li>
-                    <button 
-                    className="dropdown-item" 
-                    type="button" 
-                    id="refeicoes"
-                    onClick={() => handleRefeicoesChange("Jantar")} 
-                    >
-                      Jantar
-                    </button>
-                  </li>
-                </ul>
-              </div>
-            
-            </div>
+              <div className="dropdown-menu-3">
+  {/* Refeições */}
+  <div className="dropdown">
+    <button
+      className="btn btn-secondary dropdown-toggle"
+      type="button"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+      id="botao-list-refeicoes"
+    >
+      {refeicoes || "Tipo de Refeição"} {/* Mostra o tipo de refeição atual */}
+    </button>
+    <ul className="dropdown-menu">
+      <li>
+        <button 
+          className="dropdown-item" 
+          type="button" 
+          id="refeicoes" 
+          onClick={() => handleRefeicoesChange("Café Da Manhã")} 
+        >
+          Café Da Manhã
+        </button>
+      </li>
+      <li>
+        <button 
+          className="dropdown-item" 
+          type="button" 
+          id="almoco" 
+          onClick={() => handleRefeicoesChange("Almoço")} 
+        >
+          Almoço
+        </button>
+      </li>
+      <li>
+        <button
+          className="dropdown-item"
+          type="button"
+          id="merenda"
+          onClick={() => handleRefeicoesChange("Merenda")} 
+        >
+          Merenda
+        </button>
+      </li>
+      <li>
+        <button 
+          className="dropdown-item" 
+          type="button" 
+          id="refeicoes"
+          onClick={() => handleRefeicoesChange("Jantar")} 
+        >
+          Jantar
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
+
               
               </div>
             </div>
@@ -319,14 +413,15 @@ const Header = () => {
             <button 
               className="client-button-salvarAlimentos" 
               onClick={SalvarAlimentos}>
-              Salvar Alimento</button>
+                Salvar Alimento
+             </button>
           
           </div>
 
           </div>
         ))}
       </div>
-      
+     
 
 
     </div>

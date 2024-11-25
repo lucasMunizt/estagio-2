@@ -65,7 +65,7 @@
 .informacoes{
   display: grid;
   grid-template-columns: repeat(3,1fr);
-  gap: 20px;
+  gap: 5px;
   max-width: 1200px;
   margin: 0 auto;
   margin-left: -28px;
@@ -84,8 +84,8 @@
 background-color: rgba(138, 115, 115, 0);
 color: rgb(0, 0, 0);
 border-radius: 50%; /* Torna o elemento circular */
-width: 70px;
-height: 60px;
+width: 80px;
+height: 80px;
 padding: 35px;
 display: flex;
 align-items: center;
